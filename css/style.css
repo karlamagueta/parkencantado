@@ -1,0 +1,299 @@
+/* Utilidades */
+
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  font-family: "junge";
+  font-size: 1.25rem;
+  box-sizing: border-box;
+  color: #525252;
+}
+a {
+  color: inherit;
+}
+
+.container-1200 {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.btn {
+  background: #77d1d1;
+  border-radius: 8px;
+  padding: 14px 24px 14px 24px;
+  border-color: transparent;
+  box-shadow: 0px 1px 2px 0px #0000000d;
+  font-family: "junge", Courier, monospace;
+  font-size: 20px;
+}
+
+.btn:hover {
+  background: #51a5a5;
+  color: #e6f2f2;
+  transition: 120ms;
+}
+
+/* Utilidades */
+
+@font-face {
+  font-family: "autumn";
+  src: local("Autumn in November.ttf"),
+    url("Autumn in November.ttf") format("TrueType");
+}
+
+@font-face {
+  font-family: "beth";
+  src: url("https://fonts.googleapis.com/css2?family=Beth+Ellen&family=Junge&display=swap");
+}
+
+.junge {
+  font-family: "Junge", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.autumn {
+  font-family: "autumn", cursive;
+  font-weight: normal;
+}
+
+.beth {
+  font-family: "beth", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.titulo {
+  font-family: Autumn in November;
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 90.69px;
+  letter-spacing: -0.02em;
+  text-align: center;
+  z-index: 10;
+}
+
+/* Header */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-menu {
+  align-content: end;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.header-menu li {
+  padding: 14px 24px;
+  font-size: 20px;
+}
+
+/*----Banner Hero----*/
+.banner--hero {
+  margin: 0.75rem;
+  width: 100%;
+  align-items: center;
+}
+
+.banner--hero h1,
+p {
+  display: flex;
+  justify-content: center;
+  z-index: 10;
+}
+
+.banner--hero h1 {
+  color: #23a9a9;
+  z-index: 10;
+}
+
+.splash1 {
+  margin-left: -160px;
+  margin-top: -200px;
+  z-index: 1;
+}
+
+.splash2 {
+  margin-left: 400px;
+  margin-top: 100px;
+  margin-bottom: -500px;
+  z-index: 2;
+}
+
+.img--bannerhero {
+  display: flex;
+  justify-items: center;
+  width: max-content;
+  max-width: 80rem;
+  border-radius: 10px;
+}
+
+.fotobanner {
+  margin-left: -1500px;
+  z-index: auto;
+}
+
+.img--bannerhero #foto--principal img {
+  border-radius: 10px;
+  box-shadow: 0 4px 4px 0 #c8c8c8;
+}
+
+/*Section ---- Nosso Espaço*/
+
+#espaco {
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+#espaco h1 {
+  color: #d698d0;
+}
+.grid--espaco {
+  margin-top: -350px;
+  display: grid;
+  grid-template-columns: 2fr;
+  grid-column: auto;
+  align-items: center;
+  gap: 2rem;
+}
+
+.grid--espaco p {
+  justify-content: start;
+  padding-top: 24px;
+  grid-column: 1;
+  font-size: 20px;
+}
+
+.grid--espaco li {
+  font-size: 20px;
+}
+
+.espaco--img {
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: 3fr;
+  grid-template-rows: 2fr;
+  gap: 2.3125rem;
+  gap: 32px;
+}
+.espaco--img img {
+  width: 296px;
+  height: 194px;
+  top: 1444px;
+  left: 1064px;
+  border-radius: 10px;
+  opacity: 0px;
+  box-shadow: 0 4px 4px 0 #c8c8c8;
+}
+.grid--item1 {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.grid--item2 {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.grid--item3 {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.grid--item4 {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.grid--item5 {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.grid--item6 {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.splash3 {
+  margin-left: -300px;
+  margin-top: -80px;
+  z-index: -1;
+}
+
+/*-----Aniversarios-----*/
+
+#aniversarios h1 {
+  color: #79a8ca;
+  margin-top: 3.75rem;
+}
+
+.grid--aniversarios {
+  color: #79a8ca;
+  display: grid;
+  grid-template-columns: 2fr;
+  margin-top: 30px;
+  margin-bottom: 3.75rem;
+}
+
+.orcamento {
+  grid-column: 1;
+}
+
+.img--aniversario {
+  grid-column: 2;
+  width: 39rem;
+}
+
+.img--aniversario img {
+  width: 39rem;
+  border-radius: 0.625rem;
+  box-shadow: 0 4px 4px 0 #c8c8c8;
+}
+
+.orcamento p {
+  justify-content: start;
+  color: #926be5;
+  font-size: 20px;
+  margin-bottom: 1.25rem;
+}
+
+.orcamento label {
+  font-size: 16px;
+}
+
+.orcamento input,
+.orcamento textarea, .orcamento data {
+  border: 1px solid #926be5;
+  border-radius: 0.625rem;
+  padding: 8px;
+  margin-bottom: 20px;
+}
+
+.orcamento--form {
+    display: grid;
+    grid-template-columns: 2fr;
+    background-color: #d698d0;
+}
+
+.col--12 input {
+  column: 1 / 2;
+  width: 100%;
+}
+
+.col--1 input {
+  column: 1;
+  width: 50%;
+}
+
+.col--2 {
+    width: 50%;
+  column: 2;
+}
