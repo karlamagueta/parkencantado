@@ -270,30 +270,38 @@ p {
 }
 
 .orcamento input,
-.orcamento textarea, .orcamento data {
+.orcamento textarea,
+.orcamento data {
   border: 1px solid #926be5;
   border-radius: 0.625rem;
   padding: 8px;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 }
 
 .orcamento--form {
-    display: grid;
-    grid-template-columns: 2fr;
-    background-color: #d698d0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: #d698d0;
+  gap: 2rem;
 }
 
-.col--12 input {
-  column: 1 / 2;
+.orcamento textarea {
   width: 100%;
 }
 
-.col--1 input {
+.col--12 input {
+  columns: 1 / 2;
+  width: 100%;
+}
+
+.col--1 input[type="tel"]{
   column: 1;
   width: 50%;
 }
 
-.col--2 {
-    width: 50%;
+.col--2 input[type="date"] {
+  width: 50%;
   column: 2;
+
 }
+
