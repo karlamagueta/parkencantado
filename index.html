@@ -98,30 +98,32 @@
         </div>
         <div class="grid--aniversarios container-1200">
             <div class="orcamento">
-                <div class="orcamento--form">
-                    <p>Solicite seu orçamento</p>
+                <p class="aniv--p">Solicite seu orçamento</p>
                     <div class="col--12">
                         <label for="nome">Nome<br></label>
-                        <input type="text" id="nome" name="nome" placeholder="Nome Completo" required>
+                        <input class="form--nome" type="text" id="nome" name="nome" placeholder="Nome Completo" required>
                     </div>
                     <div class="col--12">
                         <label for="e-mail">E-mail<br></label>
-                        <input type="text" id="e-mail" name="e-mail" placeholder="E-mail" required>
+                        <input class="form--email" type="text" id="e-mail" name="e-mail" placeholder="E-mail" required>
                     </div>
-                    <div class="col--1">
-                        <label for="telemovel">Telemóvel<br></label>
-                        <input type="tel" id="telemovel" name="telemovel" placeholder="xxx xxx xxx">
-                    </div>
-                    <div class="col--2">
-                        <label for="data">Data da Festa<br></label>
-                        <input type="date" id="data" name="data" required>
+                    <div class="orcamento--form">
+                        <div class="col--1">
+                            <label for="telemovel">Telemóvel<br></label>
+                            <input type="tel" id="telemovel" name="telemovel" placeholder="xxx xxx xxx">
+                        </div>
+                        <div class="col--2">
+                            <label for="data">Data da Festa<br></label>
+                            <input type="date" id="data" name="data" required>
+                        </div>
                     </div>
                     <div class="col--12">
                         <label for="mensagem">Mensagem</label>
                         <textarea id="mensagem" name="mensagem" rows="5" placeholder="Digite aqui sua mensagem"></textarea>
                     </div>
-                    <button class="btn">Enviar</button>
-                </div>
+                    <div class="btn--form">
+                        <button class="btn">Enviar</button>
+                    </div>
             </div>
             <div class="img--aniversario">
                 <img src="/img/bolo.jpg" alt="">
