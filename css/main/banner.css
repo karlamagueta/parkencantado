@@ -1,4 +1,6 @@
 /*----Banner Hero----*/
+
+
 .banner--hero {
   margin: 0.75rem;
   width: 100%;
@@ -20,21 +22,25 @@ p {
 .splash1 {
   margin-left: -160px;
   margin-top: -200px;
-  z-index: 1;
+  z-index: -1;
+  overflow: hidden;
+  position: relative;
 }
 
 .splash2 {
   margin-left: 400px;
   margin-top: 100px;
   margin-bottom: -500px;
-  z-index: 2;
+  z-index: -2;
+  position: relative;
+  overflow: hidden;
 }
 
 .img--bannerhero {
   display: flex;
   justify-items: center;
   width: max-content;
-  max-width: 80rem;
+  max-width: 100%;
   border-radius: 10px;
 }
 
@@ -43,9 +49,18 @@ p {
   z-index: auto;
 }
 
-.img--bannerhero #foto--principal img {
+
+#foto--principal img {
   border-radius: 10px;
   box-shadow: 0 4px 4px 0 #c8c8c8;
   object-fit: cover;
+  object-position: center;
   display: block;
+}
+
+
+@media (max-width:1750px) {
+  .splash1, .splash2 {
+    overflow-x: hidden;
+  }
 }
