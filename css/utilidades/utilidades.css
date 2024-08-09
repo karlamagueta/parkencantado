@@ -1,0 +1,83 @@
+/* Utilidades */
+
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  font-family: "junge";
+  font-size: 1.25rem;
+  box-sizing: border-box;
+  color: #525252;
+}
+a {
+  color: inherit;
+}
+
+.container-1200 {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.btn {
+  background: #77d1d1;
+  border-radius: 8px;
+  padding: 14px 24px;
+  border-color: transparent;
+  box-shadow: 0px 1px 2px 0px #0000000d;
+  font-family: "junge", Courier, monospace;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #51a5a5;
+  color: #e6f2f2;
+  transition: 120ms;
+}
+
+/* Utilidades */
+
+@font-face {
+  font-family: "autumn";
+  src: local("Autumn in November.ttf"),
+    url("Autumn in November.ttf") format("TrueType");
+}
+
+@font-face {
+  font-family: "beth";
+  src: url("https://fonts.googleapis.com/css2?family=Beth+Ellen&family=Junge&display=swap");
+}
+
+.junge {
+  font-family: "Junge", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.autumn {
+  font-family: "autumn", cursive;
+  font-weight: normal;
+}
+
+.beth {
+  font-family: "beth", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.titulo {
+  font-family: Autumn in November;
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 90.69px;
+  letter-spacing: -0.02em;
+  text-align: center;
+  z-index: 10;
+}
+
+@media (max-width:1300px) {
+  .container-1200 {
+    margin: 0 20px;
+  }
+}

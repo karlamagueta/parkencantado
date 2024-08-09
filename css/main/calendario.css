@@ -1,0 +1,37 @@
+/*----- Section Calendar-----*/
+.grid--calendario {
+  display: grid;
+  grid-template-columns: 1fr 624px;
+  gap: 32px;
+  margin-bottom: 3.75rem;
+}
+
+.splash4 {
+  margin-left: -360px;
+  margin-top: -200px;
+  z-index: 1;
+}
+
+#calendario .titulo {
+  color: #77d1d1;
+  margin-bottom: 4.625rem;
+}
+
+.calend--esq p {
+  font-size: 20px;
+  text-align: center;
+}
+
+.arrow {
+  margin-left: 400px;
+  margin-top: -380px;
+}
+
+#calendario iframe {
+  box-shadow: 0px 2.77px 2.21px 0px #00000005;
+  box-shadow: 0px 6.65px 5.32px 0px #00000007;
+  box-shadow: 0px 12.52px 10.02px 0px #00000009;
+  box-shadow: 0px 22.34px 17.87px 0px #0000000b;
+  box-shadow: 0px 41.78px 33.42px 0px #0000000d;
+  box-shadow: 0px 100px 80px 0px #00000012;
+}

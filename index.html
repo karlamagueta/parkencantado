@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Park Encantado</title>
     <link rel="preload" href="/css/style.css" as="style">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/style.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,7 +24,7 @@
 
 <body>
     <header>
-        <header class="header-bg container-1200">
+        <div class="header-bg container-1200">
             <div class="header">
                 <a href="./" id="logo-img"><img src="/img/logo.svg" alt="Park Encantado"></a>
                 <nav aria-label="primaria">
@@ -33,11 +33,14 @@
                         <li><a href="#aniversarios">Aniversários</a></li>
                         <li><a href="#localizacao">Localização</a></li>
                         <li><a href="#contacto">Contacto</a></li>
-                        <button class="btn">Reserve</button>
                     </ul>
+                    <button class="btn">Reserve</button>
+                    <div class="hamburger" id="hamburger-menu">
+                        &#9776;
+                    </div>                <!-- Ícone do menu hambúrguer -->
                 </nav>
             </div>
-        </header>
+        </div>
     </header>
     <section id="bannerhero" class="container-1200">
         <div class="banner--hero">
@@ -59,7 +62,7 @@
             </div>
 
         </div>
-
+<!--
     </section>
     <section id="espaco" #espaco class="container-1200">
         <div>
@@ -92,7 +95,7 @@
             </div>
         </div>
     </section>
-    <section id="aniversarios">
+    <section id="aniversarios" class="container-1200">
         <div>
             <h1 class="titulo">aniversários</h1>
         </div>
@@ -130,6 +133,30 @@
             </div>
         </div>
     </section>
+    <section id="calendario" class="container-1200">
+        <div class="grid--calendario">
+            <div class="calend--esq">
+                <div>
+                    <h1 class="titulo">o park está aberto?</h1>
+                </div>
+                <div>
+                    <p>Aqui você pode conferir<br> 
+                        se nosso espaço está disponível<br> 
+                        para sua visita ou festa de aniversário!</p>
+                </div>
+                <div class="splash4">
+                    <img src="/img/splash4.png" alt="">
+                </div>
+                <div class="arrow">
+                    <img src="/img/arrow.png" alt="">
+                </div>
+            </div>
+            <div class="calend--dir">
+                <iframe src="https://embed.styledcalendar.com/#2DMPE9FPv8PJtxNuBhnu" title="Styled Calendar" class="styled-calendar-container" style="width: 100%; border: none;" data-cy="calendar-embed-iframe"></iframe>
+            </div>
+        </div>
+    </section> -->
+    <script async type="module" src="https://embed.styledcalendar.com/assets/parent-window.js"></script>
 </body>
 
 </html>

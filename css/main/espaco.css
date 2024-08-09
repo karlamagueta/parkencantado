@@ -1,0 +1,83 @@
+/*Section ---- Nosso Espaço*/
+
+#espaco {
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+#espaco h1 {
+  color: #d698d0;
+}
+.grid--espaco {
+  margin-top: -350px;
+  display: grid;
+  grid-template-columns: 2fr;
+  grid-column: auto;
+  align-items: center;
+  gap: 2rem;
+}
+
+.grid--espaco p {
+  justify-content: start;
+  padding-top: 24px;
+  grid-column: 1;
+  font-size: 20px;
+}
+
+.grid--espaco li {
+  font-size: 20px;
+}
+
+.espaco--img {
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: 3fr;
+  grid-template-rows: 2fr;
+  gap: 2.3125rem;
+  gap: 32px;
+}
+.espaco--img img {
+  width: 296px;
+  height: 194px;
+  top: 1444px;
+  left: 1064px;
+  border-radius: 10px;
+  opacity: 0px;
+  box-shadow: 0 4px 4px 0 #c8c8c8;
+}
+
+.grid--item1 {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.grid--item2 {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.grid--item3 {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.grid--item4 {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.grid--item5 {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.grid--item6 {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.splash3 {
+  margin-left: -300px;
+  margin-top: -80px;
+  z-index: -1;
+}
