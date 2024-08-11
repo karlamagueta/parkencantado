@@ -1,6 +1,4 @@
 /*----Banner Hero----*/
-
-
 .banner--hero {
   margin: 0.75rem;
   width: 100%;
@@ -47,6 +45,10 @@ p {
 .fotobanner {
   margin-left: -1500px;
   z-index: auto;
+}
+
+#foto--principal {
+  width: 100%;
 }
 
 
