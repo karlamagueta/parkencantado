@@ -1,0 +1,6 @@
+aiosmtplib
+click
+email_validator
+fastapi
+pydantic
+uvicorn

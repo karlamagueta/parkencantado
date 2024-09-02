@@ -1,0 +1,12 @@
+/* Header */
+@import "/header/header.css";
+
+/* Main */
+@import "/main/banner.css";
+@import "/main/espaco.css";
+@import "/main/aniversarios.css";
+@import "/main/espaco.css";
+@import "/main/calendario.css";
+
+/* Utilidades */
+@import "/utilidades/utilidades.css";
