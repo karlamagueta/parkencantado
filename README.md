@@ -12,12 +12,12 @@ Bem-vindo ao repositório do Park Encantado! Este projeto é um site dedicado a 
 
 ## Sobre o Projeto
 
-O Park Encantado é um projeto web que visa oferecer uma plataforma interativa e informativa para os visitantes do parque. Aqui você encontrará detalhes sobre as atrações, eventos especiais, opções de alimentação e muito mais.
+O Park Encantado é um projeto web que visa oferecer uma plataforma interativa e informativa para os visitantes do parque. Aqui você encontrará detalhes sobre as atrações, eventos, espaço e muito mais.
 
 ## Funcionalidades
 
 - **Informações das Atrações:** Detalhes sobre cada atração, incluindo descrição, horários e restrições de idade.
-- **Eventos Especiais:** Calendário de eventos especiais e shows.
+- **Eventos Especiais:** Calendário com detalhes de quando o park está aberto e quando pode-se agendar festas de aniverário.
 - **Contato:** Formulário de contato para dúvidas e feedback dos visitantes.
 
 ## Tecnologias Utilizadas
