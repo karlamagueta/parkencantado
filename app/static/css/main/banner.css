@@ -9,7 +9,7 @@
 p {
   display: flex;
   justify-content: center;
-  z-index: 10;
+  z-index: 1000;
 }
 
 .banner--hero h1 {
@@ -17,52 +17,51 @@ p {
   z-index: 10;
 }
 
-.splash1 {
-  margin-left: -160px;
-  margin-top: -200px;
-  z-index: -1;
-  overflow: hidden;
-  position: relative;
-}
-
-.splash2 {
-  margin-left: 400px;
-  margin-top: 100px;
-  margin-bottom: -500px;
-  z-index: -2;
-  position: relative;
-  overflow: hidden;
-}
-
 .img--bannerhero {
   display: flex;
   justify-items: center;
-  width: max-content;
+  width: 100%;
   max-width: 100%;
-  border-radius: 10px;
+  height: auto;
 }
 
 .fotobanner {
-  margin-left: -1500px;
-  z-index: auto;
+  margin-top: -120px;
+  z-index: 1;
 }
 
 #foto--principal {
   width: 100%;
 }
 
-
 #foto--principal img {
-  border-radius: 10px;
-  box-shadow: 0 4px 4px 0 #c8c8c8;
   object-fit: cover;
   object-position: center;
-  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 
+@media (max-width: 1180px) {
+  .fotobanner {
+    margin-top: -60px;
+  }
+}
 
-@media (max-width:1750px) {
-  .splash1, .splash2 {
-    overflow-x: hidden;
+@media (max-width: 700px) {
+  .fotobanner {
+    margin-top: -30px;
+  }
+}
+
+@media (max-width: 550px) {
+  .banner--hero h1 {
+    font-size: 30px;
+  }
+
+  .banner--hero p {
+    margin-top: -20px;
+    margin-bottom: 20px;
   }
 }

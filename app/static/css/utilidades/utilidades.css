@@ -82,3 +82,37 @@ a {
     margin: 0 20px;
   }
 }
+
+@media (max-width:800px) {
+  .titulo {
+    font-size: 50px;
+  }
+
+  .banner--hero p {
+    font-size: 1rem;
+  }
+
+  .titulo + p {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  }
+
+@media (max-width:700px) {
+  .btn {
+    padding: 10px 20px;
+    font-size: 20px;
+  }
+}
+
+  
+  @media (max-width:550px) {
+    .titulo {
+      font-size: 30px;
+    }
+
+    .titulo + p {
+      font-size: 16px;
+    }
+  }

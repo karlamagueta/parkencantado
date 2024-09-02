@@ -104,9 +104,9 @@
   }
 
 .header-menu .btn {
-    display: block; /* Garante que o botão seja visível */
+    display: block; 
     margin-top: 10px;
-    margin-left: -10px; /* Ajuste o espaçamento conforme necessário */
+    margin-left: -10px; 
     z-index: 15;
   }
 }
