@@ -149,6 +149,10 @@
     </section> -->
     <script src="static/js/script.js"></script>
     <script async type="module" src="https://embed.styledcalendar.com/assets/parent-window.js"></script>
+
+<!-- Hot reload script -->
+  {% if DEBUG %} {{ hot_reload.script(url_for('hot-reload')) | safe }} {% endif
+  %}
 </body>
 
 </html>

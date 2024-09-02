@@ -1,21 +1,52 @@
-from fastapi import FastAPI, Form, HTTPException
-from pydantic import EmailStr
-from aiosmtplib import send
-from email.message import EmailMessage
-from fastapi.staticfiles import StaticFiles
-from fastapi.responses import HTMLResponse
 import logging
+from email.message import EmailMessage
+
+import arel
+import jinja2
+from aiosmtplib import send
+from fastapi import FastAPI, Form, HTTPException, Request
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
+from pydantic import EmailStr
+
+from .config import settings
 
 logging.basicConfig(level=logging.INFO)
 
 app = FastAPI()
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount(
+    "/static", StaticFiles(directory=settings.path_for("static")), name="static"
+)
+jinja_env = jinja2.Environment(
+    loader=jinja2.FileSystemLoader(settings.path_for("templates")),
+    autoescape=True,
+)
+templates = Jinja2Templates(env=jinja_env)
+
+
+if settings.get("DEBUG") is True:
+    # Auto reload front-end when template changes
+    hot_reload = arel.HotReload(
+        paths=[
+            arel.Path(settings.path_for("templates")),
+            arel.Path(settings.path_for("static")),
+        ]
+    )
+    app.add_websocket_route("/hot-reload", route=hot_reload, name="hot-reload")
+    app.add_event_handler("startup", hot_reload.startup)
+    app.add_event_handler("shutdown", hot_reload.shutdown)
+    templates.env.globals["DEBUG"] = True
+    templates.env.globals["hot_reload"] = hot_reload
+
 
 @app.get("/", response_class=HTMLResponse)
-async def read_index():
-    with open("templates/index.html") as f:
-        return f.read()
+async def read_index(request: Request):
+    return templates.TemplateResponse(
+        request=request, name="index.html", context={}
+    )
+
 
 @app.post("/enviar-email/")
 async def enviar_email(
@@ -25,37 +56,55 @@ async def enviar_email(
     data: str = Form(...),
     mensagem: str = Form(...),
 ):
-    corpo_email = f"""
-    Nome: {nome}
-    E-mail: {email}
-    Telemóvel: {telemovel}
-    Data da Festa: {data}
+    corpo_email = (
+        jinja_env.get_template("email/contato.html")
+        .render(
+            preview_text=f"Novo email de {nome}",
+            nome=nome,
+            email=email,
+            telemovel=telemovel,
+            data=data,
+            mensagem=mensagem,
+        )
+        .encode("utf-8")
+    )
 
-    Mensagem:
-    {mensagem}
-    """
-
-    logging.info(f"Dados recebidos: {nome}, {email}, {telemovel}, {data}, {mensagem}")
+    logging.info(
+        f"Dados recebidos: {nome}, {email}, {telemovel}, {data}, {mensagem}"
+    )
 
     message = EmailMessage()
-    message["From"] = "testemailspython@gmail.com"
-    message["To"] = "testemailspython@gmail.com"
-    message["Subject"] = "Novo contato - Park Encantado"
-    message.set_content(corpo_email)
-
+    message["From"] = settings.from_address
+    message["To"] = settings.to_address
+    message["Subject"] = f"Novo contato - {nome} - {settings.site_name}"
+    message.add_header("Content-Type", "text/html")
+    message.set_payload(corpo_email)
 
     try:
-        await send(
-            message,
-            hostname="smtp.gmail.com",
-            port=587,
-            use_tls=False,
-            start_tls=True,
-            username="testemailspython@gmail.com",
-            password="zculsiepvnysbvrv",
-        )
-        logging.info("E-mail enviado com sucesso!")
-        return {"message": "E-mail enviado com sucesso!"}
+        await send(message, **settings.email_options)
+        logging.info("E-mail recebido com sucesso!")
     except Exception as e:
         logging.error(f"Erro ao enviar e-mail: {e}")
         raise HTTPException(status_code=500, detail="Erro ao enviar o e-mail.")
+    else:
+        # Confirmation to the sender
+        confirmation_message = EmailMessage()
+        confirmation_message["From"] = settings.from_address
+        confirmation_message["To"] = email
+        confirmation_message["Subject"] = (
+            f"Recebemos a sua mensagem - {settings.site_name}"
+        )
+        confirmation_message.add_header("Content-Type", "text/html")
+        confirmation_message.set_payload(
+            jinja_env.get_template("email/confirmation.html")
+            .render(
+                preview_text=f"Ola {nome} recebemos a sua mensagem.",
+                nome=nome,
+                data=data,
+            )
+            .encode("utf-8")
+        )
+        await send(confirmation_message, **settings.email_options)
+        logging.info("Confirmacao enviada com sucesso!")
+
+    return {"message": "E-mail enviado com sucesso!"}
