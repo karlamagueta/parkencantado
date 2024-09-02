@@ -1,5 +1,14 @@
 /* Utilidades */
 
+@font-face {
+  font-family: "autumn";
+  src: local("Autumn in November"), /* nome da fonte local */
+       url("Autumn_in_November.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* opcional, melhora a renderização */
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -37,17 +46,11 @@ a {
   transition: 120ms;
 }
 
-/* Utilidades */
 
-@font-face {
-  font-family: "autumn";
-  src: local("Autumn in November.ttf"),
-    url("Autumn in November.ttf") format("TrueType");
-}
-
-@font-face {
-  font-family: "beth";
-  src: url("https://fonts.googleapis.com/css2?family=Beth+Ellen&family=Junge&display=swap");
+.fredericka-the-great-regular {
+  font-family: "Fredericka the Great", serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .junge {
@@ -68,7 +71,7 @@ a {
 }
 
 .titulo {
-  font-family: Autumn in November;
+  font-family: "autumn", "Fredericka the Great";
   font-size: 64px;
   font-weight: 400;
   line-height: 90.69px;

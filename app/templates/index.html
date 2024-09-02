@@ -6,8 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Park Encantado</title>
     <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Beth+Ellen&family=Junge&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap');
     </style>
 
 </head>
@@ -144,9 +148,9 @@
     <script src="static/js/script.js"></script>
     <script async type="module" src="https://embed.styledcalendar.com/assets/parent-window.js"></script>
 
-<!-- Hot reload script -->
-  {% if DEBUG %} {{ hot_reload.script(url_for('hot-reload')) | safe }} {% endif
-  %}
+    <!-- Hot reload script -->
+    {% if DEBUG %} {{ hot_reload.script(url_for('hot-reload')) | safe }} {% endif
+    %}
 </body>
 
 </html>
