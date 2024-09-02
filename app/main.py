@@ -11,14 +11,26 @@ from fastapi.templating import Jinja2Templates
 from pydantic import EmailStr
 
 from .config import settings
+from .utils import NoCacheStaticFiles
 
 logging.basicConfig(level=logging.INFO)
 
+DEBUG = settings.get("DEBUG") is True
+
 app = FastAPI()
 
+if DEBUG:
+    static_class = NoCacheStaticFiles
+    logging.info("Uncached static files")
+else:
+    static_class = StaticFiles
+
 app.mount(
-    "/static", StaticFiles(directory=settings.path_for("static")), name="static"
+    "/static",
+    static_class(directory=settings.path_for("static")),
+    name="static",
 )
+
 jinja_env = jinja2.Environment(
     loader=jinja2.FileSystemLoader(settings.path_for("templates")),
     autoescape=True,
@@ -26,7 +38,7 @@ jinja_env = jinja2.Environment(
 templates = Jinja2Templates(env=jinja_env)
 
 
-if settings.get("DEBUG") is True:
+if DEBUG:
     # Auto reload front-end when template changes
     hot_reload = arel.HotReload(
         paths=[
