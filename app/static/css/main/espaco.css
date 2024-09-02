@@ -4,12 +4,9 @@
 }
 
 #espaco h1 {
-  color: #311bae;
+  color: #d698d0;
 }
 
-/*#espaco h1 {
-  color: #d698d0;
-}*/
 .grid--espaco {
   margin-top: -350px;
   display: grid;
@@ -84,8 +81,7 @@
   z-index: -1;
 }
 
-
-@media (max-width:550px) {
+@media (max-width: 550px) {
   #espaco .titulo + p {
     margin-top: -20px;
     color: red;
