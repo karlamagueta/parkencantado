@@ -1,13 +1,15 @@
-/*Section ---- Nosso Espaço*/
-
-#espaco {
-  margin-top: 60px;
+.espaco {
+  margin-top: -20px;
   margin-bottom: 60px;
 }
 
 #espaco h1 {
-  color: #d698d0;
+  color: #311bae;
 }
+
+/*#espaco h1 {
+  color: #d698d0;
+}*/
 .grid--espaco {
   margin-top: -350px;
   display: grid;
@@ -80,4 +82,12 @@
   margin-left: -300px;
   margin-top: -80px;
   z-index: -1;
+}
+
+
+@media (max-width:550px) {
+  #espaco .titulo + p {
+    margin-top: -20px;
+    color: red;
+  }
 }

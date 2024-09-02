@@ -3,6 +3,7 @@
   margin: 0.75rem;
   width: 100%;
   align-items: center;
+  margin-bottom: -120px;
 }
 
 .banner--hero h1,
@@ -23,6 +24,7 @@ p {
   width: 100%;
   max-width: 100%;
   height: auto;
+  z-index: 1;
 }
 
 .fotobanner {

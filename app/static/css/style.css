@@ -1,12 +1,12 @@
 /* Header */
-@import "/header/header.css";
+@import "/static/css/header/header.css";
 
 /* Main */
-@import "/main/banner.css";
-@import "/main/espaco.css";
-@import "/main/aniversarios.css";
-@import "/main/espaco.css";
-@import "/main/calendario.css";
+@import "/static/css/main/banner.css";
+@import "/static/css/main/espaco.css";
+@import "/static/css/main/aniversarios.css";
+@import "/static/css/main/calendario.css";
+@import "/static/css/main/endereco.css";
 
 /* Utilidades */
-@import "/utilidades/utilidades.css";
+@import "/static/css/utilidades/utilidades.css";
