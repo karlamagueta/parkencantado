@@ -1,0 +1,22 @@
+debug = true
+site_name = "Park Encantado"
+from_address = "testemailspython@gmail.com"
+to_address = "k.magueta@gmail.com"
+
+[email_options]
+hostname = "smtp.gmail.com"
+port = 587
+use_tls = false
+start_tls = true
+username = "testemailspython@gmail.com"
+password = ""
+
+# NOTE: Place password on .secrets.toml
+# ```
+# [email_options]
+# dynaconf_merge = true
+# password = "abcd"
+# ```
+# OR on env
+# export PARK_email_options__password=abcd
+

@@ -124,3 +124,5 @@ __pypackages__/
 # ignore log
 *.log.*
 
+# Dynaconf secret file
+.secrets.toml

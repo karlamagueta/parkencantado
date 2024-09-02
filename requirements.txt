@@ -3,4 +3,9 @@ click
 email_validator
 fastapi
 pydantic
-uvicorn
+uvicorn[standard]
+python-multipart
+dynaconf
+jinja2
+watchfiles
+arel
