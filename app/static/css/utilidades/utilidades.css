@@ -71,7 +71,7 @@ a {
 }
 
 .titulo {
-  font-family: "autumn", "Fredericka the Great";
+  font-family: "autumn", "Fredericka the Great", cursive;
   font-size: 64px;
   font-weight: 400;
   line-height: 90.69px;
