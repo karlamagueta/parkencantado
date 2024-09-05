@@ -46,3 +46,54 @@ async function enviarFormulario() {
     }
 }
 
+// Carrossel Espaço
+
+let currentIndex = 0;
+let autoSlideInterval;
+
+// Função para exibir o slide
+function showSlide(index) {
+  const carrossel = document.querySelector('.carrossel');
+  const totalSlides = document.querySelectorAll('.carrossel-item').length;
+
+  if (index >= totalSlides) {
+    currentIndex = 0;
+  } else if (index < 0) {
+    currentIndex = totalSlides - 1;
+  } else {
+    currentIndex = index;
+  }
+
+  carrossel.style.transform = `translateX(-${currentIndex * 100}%)`;
+}
+
+// Função para iniciar o auto-slide
+function startAutoSlide() {
+  autoSlideInterval = setInterval(() => {
+    showSlide(currentIndex + 1);
+  }, 2500); // 15 segundos para trocar a imagem
+}
+
+// Função para parar o auto-slide
+function stopAutoSlide() {
+  clearInterval(autoSlideInterval);
+}
+
+// Próximo slide
+document.querySelector('.next').addEventListener('click', function () {
+  stopAutoSlide(); // Para o auto-slide quando o usuário clica
+  showSlide(currentIndex + 1);
+  startAutoSlide(); // Reinicia o auto-slide após a interação
+});
+
+// Slide anterior
+document.querySelector('.prev').addEventListener('click', function () {
+  stopAutoSlide();
+  showSlide(currentIndex - 1);
+  startAutoSlide();
+});
+
+// Inicia o auto-slide ao carregar a página
+window.addEventListener('load', function () {
+  startAutoSlide();
+});

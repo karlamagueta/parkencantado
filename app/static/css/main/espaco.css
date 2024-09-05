@@ -20,28 +20,40 @@
   padding-top: 24px;
   grid-column: 1;
   font-size: 20px;
+  color: #d698d0;
 }
 
-.grid--espaco li {
-  font-size: 20px;
+.lista-itens ul {
+  list-style: none; 
+  padding: 0; 
+  margin: 0; 
+}
+
+.lista-itens li {
+  display: flex; 
+  align-items: center; 
+  font-size: 20px; 
+  margin-bottom: 5px; 
+}
+
+.lista-itens li::before {
+  content: '•'; 
+  margin-right: 8px; 
+  color: #dc0eb3; 
 }
 
 .espaco--img {
   grid-column: 2;
-  display: grid;
-  grid-template-columns: 3fr;
-  grid-template-rows: 2fr;
-  gap: 2.3125rem;
-  gap: 32px;
+  display: grid; /* Muda para grid para facilitar o controle das colunas */
+  grid-template-columns: repeat(3, 1fr); /* 3 colunas inicialmente */
+  gap: 10px; /* Espaçamento entre as imagens */
 }
+
 .espaco--img img {
-  width: 296px;
-  height: 194px;
-  top: 1444px;
-  left: 1064px;
-  border-radius: 10px;
-  opacity: 0px;
-  box-shadow: 0 4px 4px 0 #c8c8c8;
+  width: 100%; /* As imagens ocupam 100% da largura da coluna */
+  height: auto; /* Mantém a proporção da imagem */
+  border-radius: 10px; /* Bordas arredondadas, opcional */
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2); /* Sombra opcional */
 }
 
 .grid--item1 {
@@ -80,9 +92,73 @@
   z-index: -1;
 }
 
-@media (max-width: 550px) {
-  #espaco .titulo + p {
-    margin-top: -20px;
-    color: red;
+
+/* Media query para telas menores */
+@media (max-width: 855px) {
+  .grid--espaco {
+    grid-template-columns: 1fr;
   }
+
+  .grid--espaco ul {
+    display: grid;
+    grid-column: 1;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: -20px;
+  }
+
+  .espaco--img {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .grid--espaco p {
+    justify-content: center;
+  }
+
+  .lista-itens ul {
+    justify-items: center;
+  }
+
+  .lista-itens li {
+    justify-content: start;
+    font-size: 0.75rem;
+  }
+
 }
+
+.grid--espaco p {
+  font-size: 0.875rem;
+}
+
+}
+
+@media (max-width: 600px) {
+
+  .grid--espaco ul {
+    display: flex;
+    flex-direction: column;
+  }
+  .espaco--img {
+      grid-template-columns: 1fr; 
+  }
+
+  .lista-itens {
+    grid-template-columns: 1fr;
+  }
+
+  .lista-itens li {
+    font-size: 0.7rem;
+  }
+
+  .grid--espaco p {
+    font-size: 0.75rem;
+  }
+
+
+}
+
+/*
+
+ajustar responsivo grid de atrações para 1 coluna só telas menores de 600px
+ajustar grid de fotos de telas de menos de 600px para 2 colunas de fotos
+adicionar js de ampliar a foto ao clicar nela
