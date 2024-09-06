@@ -2,8 +2,8 @@
 
 @font-face {
   font-family: "autumn";
-  src: local("Autumn in November"), /* nome da fonte local */
-       url("Autumn_in_November.ttf") format("truetype");
+  src: local("Autumn in November"),
+    /* nome da fonte local */ url("Autumn_in_November.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
   font-display: swap; /* opcional, melhora a renderização */
@@ -34,7 +34,7 @@ a {
   border-radius: 8px;
   padding: 14px 24px;
   border-color: transparent;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   font-family: "junge", Courier, monospace;
   font-size: 20px;
   cursor: pointer;
@@ -45,7 +45,6 @@ a {
   color: #e6f2f2;
   transition: 120ms;
 }
-
 
 .fredericka-the-great-regular {
   font-family: "Fredericka the Great", serif;
@@ -80,13 +79,13 @@ a {
   z-index: 10;
 }
 
-@media (max-width:1300px) {
+@media (max-width: 1300px) {
   .container-1200 {
     margin: 0 20px;
   }
 }
 
-@media (max-width:800px) {
+@media (max-width: 800px) {
   .titulo {
     font-size: 50px;
   }
@@ -99,23 +98,32 @@ a {
     font-size: 1rem;
     text-align: center;
   }
+}
 
-  }
-
-@media (max-width:700px) {
+@media (max-width: 700px) {
   .btn {
     padding: 10px 20px;
     font-size: 20px;
   }
 }
 
-  
-  @media (max-width:550px) {
-    .titulo {
-      font-size: 30px;
-    }
-
-    .titulo + p {
-      font-size: 16px;
-    }
+@media (max-width: 550px) {
+  .titulo {
+    font-size: 30px;
   }
+
+  .titulo + p {
+    font-size: 16px;
+  }
+
+  .btn {
+    font-size: 12px;
+    justify-content: center;
+    align-content: center;
+    padding: 6px 12px;
+  }
+
+  .header-bg {
+    padding-bottom: 12px;
+  }
+}

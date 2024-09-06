@@ -110,3 +110,9 @@
     z-index: 15;
   }
 }
+
+@media (max-width:550px) {
+  #logo-img img {
+    height: 80px;
+}
+}

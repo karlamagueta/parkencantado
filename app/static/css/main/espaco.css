@@ -24,37 +24,41 @@
 }
 
 .lista-itens ul {
-  list-style: none; 
-  padding: 0; 
-  margin: 0; 
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .lista-itens li {
-  display: flex; 
-  align-items: center; 
-  font-size: 20px; 
-  margin-bottom: 5px; 
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  margin-bottom: 5px;
 }
 
 .lista-itens li::before {
-  content: '•'; 
-  margin-right: 8px; 
-  color: #dc0eb3; 
+  content: "•";
+  margin-right: 8px;
+  color: #dc0eb3;
 }
 
 .espaco--img {
   grid-column: 2;
-  display: grid; /* Muda para grid para facilitar o controle das colunas */
-  grid-template-columns: repeat(3, 1fr); /* 3 colunas inicialmente */
-  gap: 10px; /* Espaçamento entre as imagens */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+
 }
 
 .espaco--img img {
-  width: 100%; /* As imagens ocupam 100% da largura da coluna */
-  height: auto; /* Mantém a proporção da imagem */
-  border-radius: 10px; /* Bordas arredondadas, opcional */
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2); /* Sombra opcional */
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer; 
+  transition: transform 0.3s ease;
 }
+
 
 .grid--item1 {
   grid-column: 1;
@@ -92,9 +96,87 @@
   z-index: -1;
 }
 
+/* Fundo escuro invisível até a imagem ser clicada */
+.fundo-escuro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999999;
+}
+
+/* Imagem ampliada */
+.foto-ampliada {
+  max-width: 90%; /* Limitar a largura da imagem ampliada */
+  max-height: 90%; /* Limitar a altura da imagem ampliada */
+  border-radius: 10px;
+  position: relative; /* Isso permite que o botão seja posicionado em relação a esta imagem */
+}
+
+
+/* Quando o fundo escuro está ativo */
+.fundo-escuro.active {
+  display: flex;
+}
+
+.overlay.active {
+  display: flex; /* Mostrar o overlay */
+}
+
+/* Overlay para ampliar a imagem */
+.overlay {
+  display: none; /* Inicialmente escondido */
+  position: fixed; /* Fica fixo na tela */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Mantém acima do fundo */
+}
+
+.overlay img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+  position: relative; /* Para o botão ser posicionado relativo à imagem */
+}
+
+/* Estilo do botão de fechar (X) */
+.close-btn {
+  position: absolute; /* O botão será posicionado em relação à imagem ampliada */
+  top: 10px; /* Posição a partir do topo da imagem ampliada */
+  right: 10px; /* Posição a partir da direita da imagem ampliada */
+  font-size: 32px;
+  color: white; /* Cor do X */
+  cursor: pointer;
+  z-index: 1001; /* Fica acima da imagem */
+  background-color: rgba(0, 0, 0, 0.7); /* Fundo semi-transparente */
+  width: 36px;
+  height: 36px;
+  border-radius: 50%; /* Botão circular */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.espaco--img img:hover {
+  transform: scale(1.03); /* Pequeno efeito de zoom ao passar o mouse */
+}
 
 /* Media query para telas menores */
 @media (max-width: 855px) {
+  .splash3 {
+    visibility: hidden;
+  }
+
   .grid--espaco {
     grid-template-columns: 1fr;
   }
@@ -120,29 +202,22 @@
   }
 
   .lista-itens li {
-    justify-content: start;
+    justify-content: center;
     font-size: 0.75rem;
   }
 
+  .grid--espaco p {
+    font-size: 0.875rem;
+  }
 }
-
-.grid--espaco p {
-  font-size: 0.875rem;
-}
-
 
 @media (max-width: 600px) {
-
   .grid--espaco ul {
     display: flex;
     flex-direction: column;
   }
   .espaco--img {
-      grid-template-columns: 1fr; 
-  }
-
-  .lista-itens {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 
   .lista-itens li {
@@ -153,11 +228,7 @@
     font-size: 0.75rem;
   }
 
-
+  #espaco .titulo + p {
+    margin-top: -10px;
+  }
 }
-
-/*
-
-ajustar responsivo grid de atrações para 1 coluna só telas menores de 600px
-ajustar grid de fotos de telas de menos de 600px para 2 colunas de fotos
-adicionar js de ampliar a foto ao clicar nela
