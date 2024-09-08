@@ -3,7 +3,7 @@
   display: grid;
   grid-template-columns: 1fr 624px;
   gap: 32px;
-  margin-bottom: 3.75rem;
+  margin: 3.75rem 0;
 }
 
 .splash4 {

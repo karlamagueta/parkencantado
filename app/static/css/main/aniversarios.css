@@ -3,6 +3,7 @@
 #aniversarios h1 {
   color: #79a8ca;
   margin-top: 3.75rem;
+  margin-bottom: 3.75rem;
 }
 
 .grid--aniversarios {
@@ -20,17 +21,20 @@
 
 .img--aniversario {
   grid-column: 2;
-  width: 39rem;
+  width: 100%;
+  height: auto;
 }
 
 .img--aniversario img {
-  width: 39rem;
+  width: 100%;
+  height: auto;
   border-radius: 0.625rem;
   box-shadow: 0 4px 4px 0 #c8c8c8;
   margin-top: 40px;
   max-width: 100%;
   height: 92%;
   background-size: cover;
+  object-fit: cover;
 }
 
 .orcamento p {
@@ -106,4 +110,19 @@
 .btn--form .btn {
   justify-self: end;
   box-shadow: 0 4px 4px 0 #c8c8c8;
+}
+
+@media (max-width:855px) {
+  .grid--aniversarios {
+    grid-template-columns: 1fr;
+  }
+
+  .img--aniversario {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .orcamento {
+    grid-row: 1;
+  }
 }
