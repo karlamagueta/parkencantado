@@ -9,7 +9,8 @@
 .splash4 {
   margin-left: -360px;
   margin-top: -200px;
-  z-index: 1;
+  z-index: -9999;
+  position: relative;
 }
 
 #calendario .titulo {
@@ -34,4 +35,75 @@
   box-shadow: 0px 22.34px 17.87px 0px #0000000b;
   box-shadow: 0px 41.78px 33.42px 0px #0000000d;
   box-shadow: 0px 100px 80px 0px #00000012;
+}
+
+.calend--dir iframe {
+  position: relative;
+  z-index: 1000000;
+}
+
+
+@media (max-width:1275px) {
+  .grid--calendario {
+    grid-template-columns: 1fr;
+  }
+
+  .arrow {
+    rotate: 90deg;
+    position: absolute;
+    left: -340px;
+    bottom: 250px;
+  }
+
+  .calend--esq {
+    position: relative;
+  }
+
+  #calendario .titulo {
+    color: #77d1d1;
+    margin-bottom: 1.5rem;
+  }
+
+  .calend--dir {
+    margin-top: -300px;
+  }
+
+  .calend--dir iframe {
+    z-index: 1;
+  }
+
+  .splash4 {
+  }
+}
+
+@media (max-width:855px) {
+  .calend--esq p {
+    font-size: 0.75rem;
+}
+
+#calendario .titulo {
+  margin-bottom: 0rem;
+}
+}
+}
+
+@media (max-width:720px) {
+  .arrow {
+    transform: scaleY(-1);
+    left: 40px;
+  }
+}
+
+@media (max-width:655px) {
+  .arrow {
+    display: none;
+  }
+.calend--dir iframe {
+  margin-top: -60px;
+}
+
+.splash4 {
+  z-index: -60000;
+  opacity: 50%;
+}
 }

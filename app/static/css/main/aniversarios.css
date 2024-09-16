@@ -125,4 +125,29 @@
   .orcamento {
     grid-row: 1;
   }
+
+  .col--1  input {
+    width: 100%;
+  }
+
+  .col--2  input {
+    width: 100%;
+  }
+
+  .img--aniversario {
+    height: 350px;
+  }
+
+  #aniversarios h1 {
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .orcamento p {
+    margin-top: -20px;
+  }
+
+  .orcamento p {
+    font-size: 0.75rem;
+  }
 }

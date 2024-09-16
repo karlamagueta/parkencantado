@@ -96,7 +96,6 @@
   z-index: -1;
 }
 
-/* Fundo escuro invisível até a imagem ser clicada */
 .fundo-escuro {
   position: fixed;
   top: 0;
@@ -112,26 +111,24 @@
 
 /* Imagem ampliada */
 .foto-ampliada {
-  max-width: 90%; /* Limitar a largura da imagem ampliada */
-  max-height: 90%; /* Limitar a altura da imagem ampliada */
+  max-width: 90%; 
+  max-height: 90%; 
   border-radius: 10px;
-  position: relative; /* Isso permite que o botão seja posicionado em relação a esta imagem */
+  position: relative; 
 }
 
-
-/* Quando o fundo escuro está ativo */
 .fundo-escuro.active {
   display: flex;
 }
 
 .overlay.active {
-  display: flex; /* Mostrar o overlay */
+  display: flex; 
 }
 
-/* Overlay para ampliar a imagem */
+
 .overlay {
-  display: none; /* Inicialmente escondido */
-  position: fixed; /* Fica fixo na tela */
+  display: none; 
+  position: fixed; 
   top: 0;
   left: 0;
   width: 100%;
@@ -139,36 +136,36 @@
   background-color: rgba(0, 0, 0, 0.8);
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* Mantém acima do fundo */
+  z-index: 1000; 
 }
 
 .overlay img {
   max-width: 90%;
   max-height: 90%;
   border-radius: 10px;
-  position: relative; /* Para o botão ser posicionado relativo à imagem */
+  position: relative; 
 }
 
-/* Estilo do botão de fechar (X) */
+
 .close-btn {
-  position: absolute; /* O botão será posicionado em relação à imagem ampliada */
-  top: 10px; /* Posição a partir do topo da imagem ampliada */
-  right: 10px; /* Posição a partir da direita da imagem ampliada */
+  position: absolute; 
+  top: 10px; 
+  right: 10px; 
   font-size: 32px;
-  color: white; /* Cor do X */
+  color: white;
   cursor: pointer;
-  z-index: 1001; /* Fica acima da imagem */
-  background-color: rgba(0, 0, 0, 0.7); /* Fundo semi-transparente */
+  z-index: 1001;
+  background-color: rgba(0, 0, 0, 0.7); 
   width: 36px;
   height: 36px;
-  border-radius: 50%; /* Botão circular */
+  border-radius: 50%; 
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .espaco--img img:hover {
-  transform: scale(1.03); /* Pequeno efeito de zoom ao passar o mouse */
+  transform: scale(1.03); 
 }
 
 /* Media query para telas menores */
