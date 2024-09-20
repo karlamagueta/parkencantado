@@ -40,7 +40,23 @@ a {
   cursor: pointer;
 }
 
+.btn--secundario {
+  border-radius: 8px;
+  padding: 1px 24px;
+  border: 1px solid #51a5a5 ;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: "junge", Courier, monospace;
+  font-size: 20px;
+  cursor: pointer;
+}
+
 .btn:hover {
+  background: #51a5a5;
+  color: #e6f2f2;
+  transition: 120ms;
+}
+
+.btn--secundario:hover {
   background: #51a5a5;
   color: #e6f2f2;
   transition: 120ms;
@@ -115,7 +131,13 @@ a {
     font-size: 12px;
     justify-content: center;
     align-content: center;
-    padding: 6px 12px;
+  }
+
+  .btn--secundario {
+    font-size: 12px;
+    justify-content: center;
+    align-content: center;
+    padding: 12px 24px;
   }
 
   .header-bg {

@@ -1,0 +1,20 @@
+#regulamento {
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+.regulamento--main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+}
+
+#regulamento .titulo {
+color: #A8D698;
+margin-bottom: 20px;
+}
+
+#regulamento p {
+    margin-bottom: 1.25rem;
+}

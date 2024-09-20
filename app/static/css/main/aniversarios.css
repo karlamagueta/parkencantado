@@ -124,6 +124,7 @@
 
   .orcamento {
     grid-row: 1;
+    margin-right: 0;
   }
 
   .col--1  input {
@@ -151,3 +152,26 @@
     font-size: 0.75rem;
   }
 }
+
+@media(max-width:500px){
+  .orcamento--form {
+    grid-template-columns: 1fr;
+    justify-content: center;
+  }
+
+  .col--2 {
+    grid-column: 1;
+    margin-top: -32px;
+  }
+
+}
+
+@media(max-width:420px){
+  .grid--aniversarios img {
+  display: none;
+  }
+
+}
+
+
+/*AJUSTAR IMAGEM OCUPANDO ESPAÇO EM BRANCO EM RESPONSIVO MENOR DE 420PX*/

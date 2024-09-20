@@ -80,10 +80,10 @@
                 <img src="static/img/IMG_0987.jpg" alt="Imagem 4" class="foto">
                 <img src="static/img/IMG_0956.jpg" alt="Imagem 5" class="foto">
                 <img src="static/img/IMG_0997.jpg" alt="Imagem 6" class="foto">
-                
+
                 <div id="overlay" class="overlay">
                     <img id="imgAmpliada" src="" alt="Imagem Ampliada" class="foto-ampliada">
-                    <span id="close-btn" class="close-btn">&times;</span> 
+                    <span id="close-btn" class="close-btn">&times;</span>
                 </div>
             </div>
         </div>
@@ -101,8 +101,8 @@
                     <input class="form--nome" type="text" id="nome" name="nome" placeholder="Nome Completo" required>
                 </div>
                 <div class="col--12">
-                    <label for="email">E-mail<br></label> <!-- Alterado de "e-mail" para "email" -->
-                    <input class="form--email" type="text" id="email" name="email" placeholder="E-mail" required> <!-- Alterado de "e-mail" para "email" -->
+                    <label for="email">E-mail<br></label>
+                    <input class="form--email" type="text" id="email" name="email" placeholder="E-mail" required>
                 </div>
                 <div class="orcamento--form">
                     <div class="col--1">
@@ -123,7 +123,7 @@
                 </div>
             </div>
             <div class="img--aniversario">
-                <img src="static/img/bolo.jpg" alt="">
+                <img src="../static/img/bolo.jpg" alt="imagem de bolo de aniversário em uma mesa enfeitada">
             </div>
         </div>
     </section>
@@ -150,7 +150,88 @@
                 <iframe src="https://embed.styledcalendar.com/#2DMPE9FPv8PJtxNuBhnu" title="Styled Calendar" class="styled-calendar-container" style="width: 100%; border: none;" data-cy="calendar-embed-iframe"></iframe>
             </div>
         </div>
-    </section> -->
+    </section>
+    <section id="endereco" class="container-1200">
+        <div>
+            <h1 class="titulo">endereço</h1>
+        </div>
+        <div class="endereco--grid">
+            <div class="endereco--esq">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2978.132715394786!2d-8.781596662776138!3d41.71765495529954!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd25b71ff0fb391b%3A0x5f1a7a85b9027f36!2sPark%20Encantado!5e0!3m2!1sen!2spt!4v1726759001244!5m2!1sen!2spt" width=100% height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="endereco--dir">
+                <div class="endereco">
+                    <h1>VEM VISITAR-NOS!</h1>
+                    <p class="endereco--icon">R. Estrada da Igreja 2310, 4925-573 Perre<br>Viana do Castelo, Portugal</p>
+                    <p class="horario--icon">Quarta a sexta-feira: 14h - 19h*<br>Sábado e Domingo: 10h - 19h*<br>Folga semanal: Segundas e Terças-feira*</p>
+                    <p>*Horário sujeito a alterações sem aviso prévio. <br> Consulte nosso Instagram para mais informações.</p>
+                </div>
+                <div class="redes--sociais">
+                    <h1>REDES SOCIAIS</h1>
+                    <div class="social--flex">
+                        <div class="social--itens">
+                            <a href="https://www.facebook.com/p/Park-Encantado-61558814477129/" target="_blank" class="icon-link"><img src="../static/img/icon-facebook.svg" alt=""><span> Facebook</span></a>
+                        </div>
+                        <div class="social--itens">
+                            <a href="https://www.instagram.com/park.encantado/" target="_blank" class="icon-link"><img src="../static/img/icon-instagram.svg" alt=""><span> Instagram</span></a>
+                        </div>
+                        <div class="social--itens">
+                            <a href="mailto:parkencantado2024@gmail.com" target="_blank" class="icon-link"><img src="../static/img/icon-mail.svg" alt=""><span> E-mail</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <section id="contacto">
+        <div class="container-1200">
+            <div class="contacto--grid">
+                <div class="contacto--esq">
+                    <h1 class="titulo">contacto</h1>
+                    <p>Mande-nos sua mensagem,<br>
+                        e responderemos o mais breve possível!</p>
+                </div>
+                <div class="contacto--dir">
+                    <div>
+                        <label for="nome">Nome<br></label>
+                        <input class="form--nome" type="text" id="nome" name="nome" placeholder="Nome Completo" required>
+                    </div>
+                    <div>
+                        <label for="email">E-mail<br></label>
+                        <input class="form--email" type="text" id="email" name="email" placeholder="E-mail" required>
+                    </div>
+                    <div>
+                        <div>
+                            <label for="telemovel">Telemóvel<br></label>
+                            <input type="tel" id="telemovel" name="telemovel" placeholder="xxx xxx xxx">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="mensagem">Mensagem</label>
+                        <textarea id="mensagem" name="mensagem" rows="5" placeholder="Digite aqui sua mensagem"></textarea>
+                    </div>
+                    <div class="btn--form">
+                        <button class="btn" type="button" onclick="enviarFormulario()">Enviar</button>
+                    </div>
+
+                </div>
+            </div>
+            <img src="../static/img/splash5.png" alt="" class="contacto--splash">
+        </div>
+
+    </section>
+    <section id="regulamento" class="container-1200">
+        <div class="regulamento--main">
+            <h1 class="titulo">regulamento</h1>
+            <p>Consulte aqui nosso regulamento de utilização do Park</p>
+            <a href="parkencantado.pt/regulamento" class="btn--secundario" role="button">Consultar</a>
+        </div>
+    </section>
+
+
+
+
     <script src="static/js/script.js"></script>
     <script async type="module" src="https://embed.styledcalendar.com/assets/parent-window.js"></script>
 
