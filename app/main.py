@@ -53,10 +53,11 @@ if DEBUG:
     templates.env.globals["hot_reload"] = hot_reload
 
 
+@app.get("/{path}", response_class=HTMLResponse)
 @app.get("/", response_class=HTMLResponse)
-async def read_index(request: Request):
+async def read_index(request: Request, path: str = "index"):
     return templates.TemplateResponse(
-        request=request, name="index.html", context={}
+        request=request, name=f"{path}.html", context={}
     )
 
 

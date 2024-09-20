@@ -1,0 +1,12 @@
+
+.footer--grid {
+    border-top: 1px solid #77D1D1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
+}
+
+.seg--footer--grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}

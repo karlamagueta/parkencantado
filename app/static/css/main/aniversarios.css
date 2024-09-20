@@ -64,6 +64,10 @@
   margin-bottom: 10px;
 }
 
+#data {
+  font-size: 40px;
+}
+
 .orcamento--form {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -105,6 +109,10 @@
 .orcamento textarea::placeholder {
   font-size: 20px;
   color: #525252;
+}
+
+#data {
+  font-size: 16px;
 }
 
 .btn--form .btn {
@@ -171,7 +179,9 @@
   display: none;
   }
 
+  #aniversarios {
+    margin-bottom: -375px;
+  }
+
 }
 
-
-/*AJUSTAR IMAGEM OCUPANDO ESPAÇO EM BRANCO EM RESPONSIVO MENOR DE 420PX*/
