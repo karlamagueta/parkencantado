@@ -9,7 +9,7 @@ port = 587
 use_tls = false
 start_tls = true
 username = "testemailspython@gmail.com"
-password = ""
+password = "abcd"
 
 # NOTE: Place password on .secrets.toml
 # ```

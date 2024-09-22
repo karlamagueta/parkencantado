@@ -121,3 +121,61 @@ async def enviar_email(
         logging.info("Confirmacao enviada com sucesso!")
 
     return {"message": "E-mail enviado com sucesso!"}
+
+@app.post("/enviar-email-contacto/")
+async def enviar_email_contacto(
+    nome_contacto: str = Form(...),
+    email_contacto: EmailStr = Form(...),
+    telemovel_contacto: str = Form(...),
+    mensagem_contacto: str = Form(...),
+):
+    corpo_email = (
+        jinja_env.get_template("email/contato.html")
+        .render(
+            preview_text=f"Novo email de {nome_contacto}",
+            nome_contacto=nome_contacto,
+            email_contacto=email_contacto,
+            telemovel_contacto=telemovel_contacto,
+            mensagem_contacto=mensagem_contacto,
+        )
+        .encode("utf-8")
+    )
+
+    logging.info(
+        f"Dados recebidos: {nome_contacto}, {email_contacto}, {telemovel_contacto}, {mensagem_contacto}"
+    )
+
+    message = EmailMessage()
+    message["From"] = settings.from_address
+    message["To"] = settings.to_address
+    message["Subject"] = f"Novo contato - {nome_contacto} - {settings.site_name}"
+    message.add_header("Content-Type", "text/html")
+    message.set_payload(corpo_email)
+
+    try:
+        await send(message, **settings.email_options)
+        logging.info("E-mail recebido com sucesso!")
+    except Exception as e:
+        logging.error(f"Erro ao enviar e-mail: {e}")
+        raise HTTPException(status_code=500, detail="Erro ao enviar o e-mail.")
+    else:
+        # Confirmation to the sender
+        confirmation_message = EmailMessage()
+        confirmation_message["From"] = settings.from_address
+        confirmation_message["To"] = email_contacto
+        confirmation_message["Subject"] = (
+            f"Recebemos a sua mensagem - {settings.site_name}"
+        )
+        confirmation_message.add_header("Content-Type", "text/html")
+        confirmation_message.set_payload(
+            jinja_env.get_template("email/confirmation.html")
+            .render(
+                preview_text=f"Ola {nome_contacto} recebemos a sua mensagem.",
+                nome=nome_contacto,
+            )
+            .encode("utf-8")
+        )
+        await send(confirmation_message, **settings.email_options)
+        logging.info("Confirmacao enviada com sucesso!")
+
+    return {"message": "E-mail enviado com sucesso!"}
