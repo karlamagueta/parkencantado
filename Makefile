@@ -33,3 +33,7 @@ install:          ## Install the project in dev mode.
 .PHONY: run
 run:              ## Run the website
 	$(ENV_PREFIX)uvicorn app.main:app --reload --reload-include *.html --reload-include *.css --reload-include *.js --reload-include *.toml
+
+.PHONY: test
+test:              ## Run the tests
+	@.venv/bin/pytest -vv

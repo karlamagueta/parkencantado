@@ -61,6 +61,13 @@ async def read_index(request: Request, path: str = "index"):
     )
 
 
+@app.get("/admin", response_class=HTMLResponse)
+async def read_index(request: Request, path: str = "admin"):
+    return templates.TemplateResponse(
+        request=request, name="admin.html", context={}
+    )
+
+
 @app.post("/enviar-email/")
 async def enviar_email(
     nome: str = Form(...),
