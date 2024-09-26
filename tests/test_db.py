@@ -12,7 +12,6 @@ def test_positive_connection_with_db():
 def test_positive_tables_are_created():
     db = conn()
     cursor = db.cursor()
-    query1 = cursor.execute("SELECT * FROM termos_e_condicoes")
-    query2 = cursor.execute("SELECT * FROM sobre_o_parque")
-    assert query1 is not None and query2 is not None
+    query = cursor.execute("SELECT * FROM content")
+    assert query is not None
     db.close()

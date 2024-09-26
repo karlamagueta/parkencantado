@@ -9,6 +9,8 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pydantic import EmailStr
+from app.admin import get_all_content
+from app.db import initialize_database
 
 from .config import settings
 from .utils import NoCacheStaticFiles
@@ -18,6 +20,7 @@ logging.basicConfig(level=logging.INFO)
 DEBUG = settings.get("DEBUG") is True
 
 app = FastAPI()
+initialize_database()
 
 if DEBUG:
     static_class = NoCacheStaticFiles
@@ -62,9 +65,10 @@ async def read_index(request: Request, path: str = "index"):
 
 
 @app.get("/admin", response_class=HTMLResponse)
-async def read_index(request: Request, path: str = "admin"):
+async def read_admin(request: Request):
+    content = get_all_content()
     return templates.TemplateResponse(
-        request=request, name="admin.html", context={}
+        request=request, name="admin.html", context={"content": content}
     )
 
 

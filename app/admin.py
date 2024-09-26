@@ -1,11 +1,14 @@
 from app.db import conn
 
-def get_content(table, title):
+
+def get_all_content():
     db = conn()
     cursor = db.cursor()
 
-    results = cursor.execute(f"SELECT content FROM {table} WHERE title = ?", (title,))
-    content = [result for result in results]
+    cursor.execute("SELECT identifier, title, content FROM content")
+    all_results = cursor.fetchall()
+    content_dict = [
+        {"identifier": row[0], "title": row[1], "content": row[2]} for row in all_results
+    ]
 
-    db.close()
-    return title, content[0][0]
+    return content_dict
