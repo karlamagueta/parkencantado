@@ -5,10 +5,12 @@ import arel
 import jinja2
 from aiosmtplib import send
 from fastapi import FastAPI, Form, HTTPException, Request
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pydantic import EmailStr
+from app.admin import get_all_content, update_content
+from app.db import initialize_database
 
 from .config import settings
 from .utils import NoCacheStaticFiles
@@ -18,6 +20,7 @@ logging.basicConfig(level=logging.INFO)
 DEBUG = settings.get("DEBUG") is True
 
 app = FastAPI()
+initialize_database()
 
 if DEBUG:
     static_class = NoCacheStaticFiles
@@ -51,6 +54,31 @@ if DEBUG:
     app.add_event_handler("shutdown", hot_reload.shutdown)
     templates.env.globals["DEBUG"] = True
     templates.env.globals["hot_reload"] = hot_reload
+
+
+@app.get("/admin", response_class=HTMLResponse)
+async def read_admin(request: Request):
+    content = get_all_content()
+    return templates.TemplateResponse(
+        request=request, name="admin.html", context={"content": content}
+    )
+
+
+@app.post("/admin/update")
+async def update_admin(request: Request):
+    try:
+        form_data = await request.form()
+
+        for identifier, new_content in form_data.items():
+            if not identifier or not new_content:
+                return {"error": "Identifier ou new_content não podem ser vazios."}, 400
+
+            update_content(identifier, new_content)
+
+        return RedirectResponse(url="/admin?status=success", status_code=303)
+
+    except Exception as e:
+        return {"error": str(e)}, 500
 
 
 @app.get("/{path}", response_class=HTMLResponse)
@@ -114,6 +142,64 @@ async def enviar_email(
                 preview_text=f"Ola {nome} recebemos a sua mensagem.",
                 nome=nome,
                 data=data,
+            )
+            .encode("utf-8")
+        )
+        await send(confirmation_message, **settings.email_options)
+        logging.info("Confirmacao enviada com sucesso!")
+
+    return {"message": "E-mail enviado com sucesso!"}
+
+@app.post("/enviar-email-contacto/")
+async def enviar_email_contacto(
+    nome_contacto: str = Form(...),
+    email_contacto: EmailStr = Form(...),
+    telemovel_contacto: str = Form(...),
+    mensagem_contacto: str = Form(...),
+):
+    corpo_email = (
+        jinja_env.get_template("email/contato.html")
+        .render(
+            preview_text=f"Novo email de {nome_contacto}",
+            nome_contacto=nome_contacto,
+            email_contacto=email_contacto,
+            telemovel_contacto=telemovel_contacto,
+            mensagem_contacto=mensagem_contacto,
+        )
+        .encode("utf-8")
+    )
+
+    logging.info(
+        f"Dados recebidos: {nome_contacto}, {email_contacto}, {telemovel_contacto}, {mensagem_contacto}"
+    )
+
+    message = EmailMessage()
+    message["From"] = settings.from_address
+    message["To"] = settings.to_address
+    message["Subject"] = f"Novo contato - {nome_contacto} - {settings.site_name}"
+    message.add_header("Content-Type", "text/html")
+    message.set_payload(corpo_email)
+
+    try:
+        await send(message, **settings.email_options)
+        logging.info("E-mail recebido com sucesso!")
+    except Exception as e:
+        logging.error(f"Erro ao enviar e-mail: {e}")
+        raise HTTPException(status_code=500, detail="Erro ao enviar o e-mail.")
+    else:
+        # Confirmation to the sender
+        confirmation_message = EmailMessage()
+        confirmation_message["From"] = settings.from_address
+        confirmation_message["To"] = email_contacto
+        confirmation_message["Subject"] = (
+            f"Recebemos a sua mensagem - {settings.site_name}"
+        )
+        confirmation_message.add_header("Content-Type", "text/html")
+        confirmation_message.set_payload(
+            jinja_env.get_template("email/confirmation.html")
+            .render(
+                preview_text=f"Ola {nome_contacto} recebemos a sua mensagem.",
+                nome=nome_contacto,
             )
             .encode("utf-8")
         )

@@ -46,6 +46,37 @@ async function enviarFormulario() {
   }
 }
 
+async function enviarFormularioContacto() {
+  // console.log("Iniciando envio do formulário de contato");
+  // console.log("Nome:", document.getElementById("nome_contacto"));
+  // console.log("Email:", document.getElementById("email_contacto"));
+  // console.log("Telemóvel:", document.getElementById("telemovel_contacto"));
+  // console.log("Mensagem:", document.getElementById("mensagem_contacto"));
+
+  const formData = new FormData();
+  formData.append("nome_contacto", document.getElementById("nome_contacto").value);
+  formData.append("email_contacto", document.getElementById("email_contacto").value);
+  formData.append("telemovel_contacto", document.getElementById("telemovel_contacto").value);
+  formData.append("mensagem_contacto", document.getElementById("mensagem_contacto").value);
+
+  try {
+    const response = await fetch("/enviar-email-contacto/", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!response.ok) {
+      throw new Error(`Erro HTTP! status: ${response.status}`);
+    }
+
+    const result = await response.json();
+    alert(result.message);
+  } catch (error) {
+    console.error("Erro ao enviar o formulário:", error);
+    alert(`Erro ao enviar o formulário: ${error.message}`);
+  }
+}
+
 // Ampliacao de fotos da galeria
 // Seleciona os elementos necessários
 const fotos = document.querySelectorAll('.foto');
