@@ -9,7 +9,11 @@ from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pydantic import EmailStr
-from app.admin import get_all_content, update_content
+from app.admin import (
+    get_all_content,
+    get_content,
+    update_content,
+)
 from app.db import initialize_database
 
 from .config import settings
@@ -57,35 +61,43 @@ if DEBUG:
 
 
 @app.get("/admin", response_class=HTMLResponse)
-async def read_admin(request: Request):
+async def admin_index(request: Request):
     content = get_all_content()
     return templates.TemplateResponse(
-        request=request, name="admin.html", context={"content": content}
+        request=request, name="admin/index.html", context={"content": content}
     )
 
 
-@app.post("/admin/update")
-async def update_admin(request: Request):
-    try:
+@app.get("/admin/{identifier}", response_class=HTMLResponse)
+@app.post("/admin/{identifier}")
+async def admin_edit(request: Request, identifier: str):
+
+    if request.method == "POST":
         form_data = await request.form()
-
-        for identifier, new_content in form_data.items():
-            if not identifier or not new_content:
-                return {"error": "Identifier ou new_content não podem ser vazios."}, 400
-
-            update_content(identifier, new_content)
-
+        new_content = form_data.get("content")
+        update_content(identifier, new_content)
         return RedirectResponse(url="/admin?status=success", status_code=303)
 
-    except Exception as e:
-        return {"error": str(e)}, 500
+    content = get_content(identifier)
+    if content is None:
+        raise HTTPException(status_code=404, detail="Not Found")
 
-
-@app.get("/{path}", response_class=HTMLResponse)
-@app.get("/", response_class=HTMLResponse)
-async def read_index(request: Request, path: str = "index"):
     return templates.TemplateResponse(
-        request=request, name=f"{path}.html", context={}
+        request=request, name="admin/edit.html", context={"item": content}
+    )
+
+
+@app.get("/{identifier}", response_class=HTMLResponse)
+@app.get("/", response_class=HTMLResponse)
+async def index(request: Request, identifier: str = "index"):
+    template = "index.html"
+    context = {"content": get_all_content()}
+    if identifier != "index":
+        context["item"] = get_content(identifier)
+        template = "page.html"
+
+    return templates.TemplateResponse(
+        request=request, name=template, context=context
     )
 
 

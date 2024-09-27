@@ -1,5 +1,5 @@
 import pytest
-from app.db import conn, initialize_database
+from app.db import conn
 
 @pytest.mark.unit
 def test_positive_connection_with_db():

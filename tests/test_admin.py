@@ -2,7 +2,19 @@ import pytest
 from fastapi.testclient import TestClient
 from app.main import app
 from app.db import conn
-from app.admin import get_all_content
+from app.admin import get_all_content, get_content
+
+
+@pytest.mark.unit
+def test_positive_get_content():
+    db = conn()
+    cursor = db.cursor()
+
+    result = get_content("regulamento")
+    assert result['identifier'] == "regulamento"
+
+    cursor.close()
+    db.close()
 
 
 @pytest.mark.unit
@@ -11,9 +23,7 @@ def test_positive_get_all_content():
     cursor = db.cursor()
 
     result = get_all_content()
-
-
-    assert result[0]['identifier'] == "termos"
+    assert "regulamento" in result
 
     cursor.close()
     db.close()
@@ -21,16 +31,16 @@ def test_positive_get_all_content():
 
 @pytest.mark.unit
 def test_positive_update_content():
-    db = conn()
-    cursor = db.cursor()
     client = TestClient(app)
 
+    text = "Nova descrição sobre o parque."
     response = client.post(
-        "/admin/update",
+        "/admin/regulamento",
         data={
-            "termos": "Novos termos de uso.",
-            "sobre": "Nova descrição sobre o parque."
+            "content": text
         }
     )
 
     assert response.status_code == 200
+
+    assert get_content("regulamento")["content"] == text

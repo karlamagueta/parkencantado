@@ -1,0 +1,17 @@
+{% extends "admin/base.html"%}
+
+{% block nav %}
+<span>Clique em uma página para editar</span>
+<hr>
+{% endblock %}
+
+{% block main %}
+  <ul>
+    {% for identifier, item in content.items() %}
+        <li><a href="{{url_for('admin_edit', identifier=identifier)}}">{{item.title}}</a></li>
+    {% else %}
+        <li>Nenhum conteúdo encontrado no banco de dados.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
+

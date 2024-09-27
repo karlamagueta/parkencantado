@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>{%block title%}ADMIN{% endblock %}</title>
+    {% block head %}{% endblock %}
+  </head>
+
+<body>
+
+{% block alert %}
+  {% if request.query_params.status == 'success' %}
+      <p style="color: green;">Conteúdos atualizados com sucesso!</p>
+  {% endif %}
+{% endblock %}
+
+<nav>
+{% block nav %}
+  <span>Clique em uma página para editar</span>
+  <hr>
+{% endblock %}
+</nav>
+
+{% block main%}{% endblock %}
+
+{% block bottom %}{% endblock %}
+</body>
+</html>
