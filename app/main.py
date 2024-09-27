@@ -5,11 +5,11 @@ import arel
 import jinja2
 from aiosmtplib import send
 from fastapi import FastAPI, Form, HTTPException, Request
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pydantic import EmailStr
-from app.admin import get_all_content
+from app.admin import get_all_content, update_content
 from app.db import initialize_database
 
 from .config import settings
@@ -56,19 +56,36 @@ if DEBUG:
     templates.env.globals["hot_reload"] = hot_reload
 
 
-@app.get("/{path}", response_class=HTMLResponse)
-@app.get("/", response_class=HTMLResponse)
-async def read_index(request: Request, path: str = "index"):
-    return templates.TemplateResponse(
-        request=request, name=f"{path}.html", context={}
-    )
-
-
 @app.get("/admin", response_class=HTMLResponse)
 async def read_admin(request: Request):
     content = get_all_content()
     return templates.TemplateResponse(
         request=request, name="admin.html", context={"content": content}
+    )
+
+
+@app.post("/admin/update")
+async def update_admin(request: Request):
+    try:
+        form_data = await request.form()
+
+        for identifier, new_content in form_data.items():
+            if not identifier or not new_content:
+                return {"error": "Identifier ou new_content não podem ser vazios."}, 400
+
+            update_content(identifier, new_content)
+
+        return RedirectResponse(url="/admin?status=success", status_code=303)
+
+    except Exception as e:
+        return {"error": str(e)}, 500
+
+
+@app.get("/{path}", response_class=HTMLResponse)
+@app.get("/", response_class=HTMLResponse)
+async def read_index(request: Request, path: str = "index"):
+    return templates.TemplateResponse(
+        request=request, name=f"{path}.html", context={}
     )
 
 

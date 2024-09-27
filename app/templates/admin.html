@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-    <form action="/admin" method="POST">
+    <form action="/admin/update" method="POST">
+        {% if status == 'success' %}
+            <p style="color: green;">Conteúdos atualizados com sucesso!</p>
+        {% endif %}
+
         {% if content %}
             {% for item in content %}
                 <label for="{{ item.identifier }}">{{ item.title }}:</label><br>
