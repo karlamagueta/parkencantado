@@ -233,10 +233,7 @@
 }
 
 @media (max-width: 600px) {
-  .grid--espaco ul {
-    display: flex;
-    flex-direction: column;
-  }
+
   .espaco--img {
     grid-template-columns: 1fr 1fr;
   }
