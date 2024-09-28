@@ -10,11 +10,10 @@
   padding: 0 20px;
 }
 
-
 .header-bg {
-  top: 0; 
-  left: 0; 
-  width: 100%; 
+  top: 0;
+  left: 0;
+  width: 100%;
   z-index: 1000;
   display: flex;
   justify-content: space-between;
@@ -35,10 +34,9 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  justify-content: flex-end; 
-  gap: 20px; 
+  justify-content: flex-end;
+  gap: 20px;
 }
-
 
 .header-menu {
   align-content: end;
@@ -59,60 +57,75 @@
   color: #5cb4b4;
 }
 
-
 @media (max-width: 1180px) {
   #logo-img img {
-      height: 120px;
+    height: 120px;
   }
 
   .header {
-      position: relative; 
+    position: relative;
   }
 
   .header nav {
-      position: relative;
+    position: relative;
   }
 
   .header nav ul {
-      display: none; 
-      position: absolute; 
-      flex-direction: column;
-      box-sizing: border-box;
-      align-items: center;
-      width: 200px;
-      top: 60px; 
-      right: 0; 
-      background-color: rgb(255, 255, 255); 
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
-      z-index: 10;
-      border-radius: 10px;
+    display: none;
+    position: absolute;
+    flex-direction: column;
+    box-sizing: border-box;
+    align-items: center;
+    width: 200px;
+    top: 60px;
+    right: 0;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    border-radius: 10px;
   }
 
   .header nav ul.show {
-      display: flex; 
+    display: flex;
   }
 
   .hamburger {
-      display: block;
-      font-size: 35px;
-      cursor: pointer;
-      color: #228080;
-      position: relative;
-      z-index: 15;
-      margin-left: 20px; 
-      margin-top: 3px;
+    display: block;
+    font-size: 35px;
+    cursor: pointer;
+    color: #228080;
+    position: relative;
+    z-index: 15;
+    margin-left: 20px;
+    margin-top: 3px;
   }
 
-.header-menu .btn {
-    display: block; 
+  .header-menu .btn {
+    display: block;
     margin-top: 10px;
-    margin-left: -10px; 
+    margin-left: -10px;
     z-index: 15;
   }
 }
 
-@media (max-width:550px) {
+@media (max-width: 800px) {
+  .header-menu li a {
+    font-size: 0.875rem;
+  }
+
+  .header nav ul {
+    width: 130px;
+    top: 60px;
+    right: 0;
+  }
+
+  .header-menu li {
+    padding: 6px 12px ;
+  }
+}
+
+@media (max-width: 550px) {
   #logo-img img {
     height: 80px;
-}
+  }
 }
