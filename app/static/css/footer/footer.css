@@ -15,9 +15,14 @@
     align-items: top;
 }
 
-.designEdesenvolvimento {
+.designEdesenvolvimento a {
     font-size: 16px;
     margin-bottom: 2rem;
+}
+
+.designEdesenvolvimento a:hover {
+    transition: .3s;
+    color: #ce139c;
 }
 
 .copyright {
