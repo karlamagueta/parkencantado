@@ -115,3 +115,8 @@ hr{
   cursor: pointer;
 }
 
+.btn-logout {
+  margin-left: 30px;
+  margin-bottom: 20px;
+}
+
