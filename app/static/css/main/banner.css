@@ -45,6 +45,11 @@ p {
   object-fit: cover;
 }
 
+.banner--hero h1 + p {
+  z-index:99999;
+  position: relative;
+}
+
 @media (max-width: 1180px) {
   .fotobanner {
     margin-top: -60px;
