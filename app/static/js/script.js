@@ -54,10 +54,22 @@ async function enviarFormularioContacto() {
   // console.log("Mensagem:", document.getElementById("mensagem_contacto"));
 
   const formData = new FormData();
-  formData.append("nome_contacto", document.getElementById("nome_contacto").value);
-  formData.append("email_contacto", document.getElementById("email_contacto").value);
-  formData.append("telemovel_contacto", document.getElementById("telemovel_contacto").value);
-  formData.append("mensagem_contacto", document.getElementById("mensagem_contacto").value);
+  formData.append(
+    "nome_contacto",
+    document.getElementById("nome_contacto").value
+  );
+  formData.append(
+    "email_contacto",
+    document.getElementById("email_contacto").value
+  );
+  formData.append(
+    "telemovel_contacto",
+    document.getElementById("telemovel_contacto").value
+  );
+  formData.append(
+    "mensagem_contacto",
+    document.getElementById("mensagem_contacto").value
+  );
 
   try {
     const response = await fetch("/enviar-email-contacto/", {
@@ -77,27 +89,51 @@ async function enviarFormularioContacto() {
   }
 }
 
-// Ampliacao de fotos da galeria
-// Seleciona os elementos necessários
-const fotos = document.querySelectorAll('.foto');
-const overlay = document.getElementById('overlay');
-const imgAmpliada = document.getElementById('imgAmpliada');
-const closeBtn = document.getElementById('close-btn');
+// Fotos
 
-// Adiciona eventos de clique às imagens
-fotos.forEach(foto => {
-    foto.addEventListener('click', () => {
-        imgAmpliada.src = foto.src; // Define a imagem ampliada
-        overlay.classList.add('active'); // Mostra o overlay
-    });
+const fotos = document.querySelectorAll(".foto");
+const overlay = document.getElementById("overlay");
+const imgAmpliada = document.getElementById("imgAmpliada");
+const closeBtn = document.getElementById("close-btn");
+const prevBtn = document.getElementById("prev-btn");
+const nextBtn = document.getElementById("next-btn");
+
+let currentIndex = 0;
+
+function updateImage() {
+  imgAmpliada.src = fotos[currentIndex].src;
+}
+
+fotos.forEach((foto, index) => {
+  foto.addEventListener("click", () => {
+    currentIndex = index;
+    updateImage();
+    overlay.classList.add("active");
+  });
 });
 
-// Fecha a imagem ampliada ao clicar no botão ou fora da imagem
-closeBtn.addEventListener('click', () => {
-    overlay.classList.remove('active'); // Esconde o overlay
+prevBtn.addEventListener("click", () => {
+  currentIndex--;
+  if (currentIndex < 0) {
+    currentIndex = fotos.length - 1;
+  }
+  updateImage();
 });
 
-// Fecha o overlay ao clicar fora da imagem ampliada
-overlay.addEventListener('click', () => {
-    overlay.classList.remove('active'); // Esconde o overlay
+nextBtn.addEventListener("click", () => {
+  currentIndex++;
+  if (currentIndex >= fotos.length) {
+    currentIndex = 0;
+  }
+  updateImage();
+});
+
+closeBtn.addEventListener("click", () => {
+  overlay.classList.remove("active");
+});
+
+overlay.addEventListener("click", (event) => {
+  if (event.target === overlay) {
+    overlay.classList.remove("active");
+  }
 });
