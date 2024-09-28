@@ -126,3 +126,6 @@ __pypackages__/
 
 # Dynaconf secret file
 .secrets.toml
+
+# Database
+*.db

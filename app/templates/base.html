@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{%block title%} Park Encantado {%endblock %}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Beth+Ellen&family=Junge&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap');
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-bg">
+            <div class="header">
+            {% block header %}
+            <a href="./" id="logo-img"><img src="static/img/logo.svg" alt="Park Encantado"></a>
+            <nav aria-label="primaria">
+                <ul class="header-menu">
+                    <li><a href="{{url_for('index')}}#espaco">O espaço</a></li>
+                    <li><a href="{{url_for('index')}}#aniversarios">Aniversários</a></li>
+                    <li><a href="{{url_for('index')}}#endereco">Localização</a></li>
+                    <li><a href="{{url_for('index')}}#contacto">Contacto</a></li>
+                </ul>
+                <a href="{{url_for('index')}}#aniversarios" class="btn">Reserve</a>
+                <div class="hamburger" id="hamburger-menu">
+                    &#9776;
+                </div>
+            </nav>
+            {% endblock %}
+            </div>
+        </div>
+    </header>
+    {% block bannerhero %}{% endblock %}
+
+    {% block main %}{% endblock %}
+
+    {% block contacto %}
+    <section id="contacto">
+        <div class="container-1200">
+            <div class="contacto--grid">
+                <div class="contacto--esq">
+                    <h1 class="titulo">contacto</h1>
+                    <p>Mande-nos sua mensagem,<br>
+                        e responderemos o mais breve possível!</p>
+                </div>
+                <div class="contacto--dir">
+                    <div>
+                        <label for="nome">Nome<br></label>
+                        <input class="form--nome" type="text" id="nome_contacto" name="nome_contacto" placeholder="Nome Completo" required>
+                    </div>
+                    <div>
+                        <label for="email">E-mail<br></label>
+                        <input class="form--email" type="text" id="email_contacto" name="email_contacto" placeholder="E-mail" required>
+                    </div>
+                    <div>
+                        <div>
+                            <label for="telemovel">Telemóvel<br></label>
+                            <input type="tel" id="telemovel_contacto" name="telemovel_contacto" placeholder="xxx xxx xxx">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="mensagem">Mensagem</label>
+                        <textarea id="mensagem_contacto" name="mensagem_contacto" rows="5" placeholder="Digite aqui sua mensagem"></textarea>
+                    </div>
+                    <div class="btn--form">
+                        <button class="btn" type="button" onclick="enviarFormularioContacto()">Enviar</button>
+                    </div>
+
+                </div>
+            </div>
+            <img src="../static/img/splash5.png" alt="" class="contacto--splash">
+        </div>
+
+    </section>
+    {% endblock %}
+
+    <section id="regulamento" class="container-1200">
+    {% block regulamento%}
+        <div class="regulamento--main">
+            <h1 class="titulo">regulamento</h1>
+            <p>Consulte aqui nosso regulamento de utilização do Park</p>
+            <a href="{{url_for('index', identifier='regulamento')}}" class="btn--secundario" role="button">Consultar</a>
+        </div>
+    {% endblock %}
+    </section>
+
+    {%block footer%}
+    <footer>
+        <div class="footer container-1200">
+            <div class="footer--grid">
+                <div>
+                    <a href="./" id="logo-img"><img src="static/img/logo.svg" alt="Park Encantado"></a>
+                </div>
+                <div>
+                    <div class="seg--footer--grid">
+                        <div class="footer--grid--esq">
+                            <div class="social--itens">
+                                <a href="https://www.facebook.com/p/Park-Encantado-61558814477129/" target="_blank" class="icon-link"><img src="../static/img/icon-facebook.svg" alt=""><span> Facebook</span></a>
+                            </div>
+                            <div class="social--itens">
+                                <a href="https://www.instagram.com/park.encantado/" target="_blank" class="icon-link"><img src="../static/img/icon-instagram.svg" alt=""><span> Instagram</span></a>
+                            </div>
+                            <div class="social--itens">
+                                <a href="mailto:parkencantado2024@gmail.com" target="_blank" class="icon-link"><img src="../static/img/icon-mail.svg" alt=""><span> E-mail</span></a>
+                            </div>
+                        </div>
+                        <div class="footer--grid--dir">
+                            <ul>
+                                <li><a href="{{url_for('index')}}#espaco">O espaço</a></li>
+                                <li><a href="{{url_for('index')}}#aniversarios">Aniversários</a></li>
+                                <li><a href="{{url_for('index')}}#endereco">Localização</a></li>
+                                <li><a href="{{url_for('index')}}#contacto">Contacto</a></li>
+                                <li><a href="{{url_for('index', identifier='regulamento')}}">Regulamento</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="copyright">Copyright © 2024 Park Encantado</p>
+            <p class="designEdesenvolvimento">Desenvolvido por Karla Mag e Victor Magueta </p>
+
+        </div>
+    </footer>
+    {% endblock %}
+
+
+    {% block bottom %}
+    <script src="static/js/script.js"></script>
+    <script async type="module" src="https://embed.styledcalendar.com/assets/parent-window.js"></script>
+    {% endblock%}
+
+    <!-- Hot reload script -->
+    {% if DEBUG %} {{ hot_reload.script(url_for('hot-reload')) | safe }} {% endif
+    %}
+
+</body>
+
+</html>

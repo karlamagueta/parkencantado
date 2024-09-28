@@ -1,0 +1,44 @@
+{% extends "admin/base.html"%}
+
+{% block title%} {{item.title}} | ADMIN {% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sceditor@3/minified/themes/square.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/sceditor@3/minified/sceditor.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sceditor@3/minified/icons/monocons.min.js"></script>
+{% endblock %}
+
+{% block nav %}
+<a href="{{ url_for('admin_index')}}"> Voltar </a>
+<hr>
+{% endblock %}
+
+{% block main %}
+  <form action="/admin/{{item.identifier}}" method="POST">
+    <label for="content">{{ item.title }}:</label><br>
+    <textarea id="content" name="content">{{ item.content }}</textarea><br><br>
+    <button type="submit">Enviar</button>
+  </form>
+{% endblock %}
+
+
+{% block bottom %}
+
+<script src="https://cdn.jsdelivr.net/npm/sceditor@3/minified/formats/xhtml.min.js"></script>
+<script>
+// https://github.com/samclarke/SCEditor/
+// https://www.sceditor.com/documentation/getting-started/
+var textarea = document.getElementById('content');
+sceditor.create(textarea, {
+    format: 'xhtml',
+    icons: 'monocons',
+    emoticonsEnabled: false,
+    height: '100%',
+    width: '100%',
+    plugins: 'undo',
+    toolbar: 'bold,italic,strike,underline|horizontalrule,link,unlink,image,email|left,center,right,justify|indent,outdent|color|table,bulletlist,orderedlist|quote,youtube|source,maximize',
+    style: 'https://cdn.jsdelivr.net/npm/sceditor@3/minified/themes/content/default.min.css'
+});
+</script>
+
+{% endblock %}
