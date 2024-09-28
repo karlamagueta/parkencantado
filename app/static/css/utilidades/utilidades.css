@@ -3,10 +3,10 @@
 @font-face {
   font-family: "autumn";
   src: local("Autumn in November"),
-   url("Autumn_in_November.ttf") format("truetype");
+    url("Autumn_in_November.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
-  font-display: swap; 
+  font-display: swap;
 }
 
 * {
@@ -43,7 +43,7 @@ a {
 .btn--secundario {
   border-radius: 8px;
   padding: 14px 24px;
-  border: 1px solid #51a5a5 ;
+  border: 1px solid #51a5a5;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   font-family: "junge", Courier, monospace;
   font-size: 20px;
@@ -85,6 +85,45 @@ a {
   font-style: normal;
 }
 
+.texto p {
+  justify-content: flex-start;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
+
+.texto div {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
+
+.texto {
+  max-width: 70ch;
+  justify-self: left;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
+
+.texto h1 {
+  font-family: "autumn", "Fredericka the Great", cursive;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 90.69px;
+  letter-spacing: -0.02em;
+  text-align: center;
+  z-index: 10;
+  color: #51a5a5;
+  text-transform: lowercase;
+}
+
 .titulo {
   font-family: "autumn", "Fredericka the Great", cursive;
   font-size: 64px;
@@ -93,6 +132,23 @@ a {
   letter-spacing: -0.02em;
   text-align: center;
   z-index: 10;
+}
+
+.whatsapp-fixo {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 1000;
+  justify-content: center;
+}
+
+.whatsapp-fixo img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  border-radius: 100%;
 }
 
 @media (max-width: 1300px) {
@@ -116,8 +172,6 @@ a {
   }
 }
 
-
-
 @media (max-width: 550px) {
   .titulo {
     font-size: 30px;
@@ -126,7 +180,6 @@ a {
   .titulo + p {
     font-size: 16px;
   }
-
 
   .btn {
     font-size: 12px;

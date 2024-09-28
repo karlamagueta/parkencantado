@@ -91,6 +91,8 @@
 
 .col--2 input[type="date"] {
   column: 2;
+  height: 48px;
+  width: 100%;
 }
 
 .btn--form {

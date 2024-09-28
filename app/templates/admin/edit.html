@@ -8,18 +8,16 @@
 <script src="https://cdn.jsdelivr.net/npm/sceditor@3/minified/icons/monocons.min.js"></script>
 {% endblock %}
 
-{% block nav %}
-<a href="{{ url_for('admin_index')}}"> Voltar </a>
-<hr>
-{% endblock %}
-
-{% block main %}
-  <form action="/admin/{{item.identifier}}" method="POST">
-    <label for="content">{{ item.title }}:</label><br>
-    <textarea id="content" name="content">{{ item.content }}</textarea><br><br>
-    <button type="submit">Enviar</button>
-  </form>
-{% endblock %}
+<div class="edit--container">
+  {% block main %}
+    <form action="/admin/{{item.identifier}}" method="POST">
+      <label for="content">{{ item.title }}:<br></label><br>
+      <textarea id="content" width=500px name="content">{{ item.content }}</textarea><br><br>
+      <a href="{{ url_for('admin_index')}}" class="admin--voltar btn--secundario"> Voltar </a>
+      <button class="admin--btn" type="submit">Enviar</button>
+    </form>
+  {% endblock %}
+</div>
 
 
 {% block bottom %}
@@ -33,10 +31,11 @@ sceditor.create(textarea, {
     format: 'xhtml',
     icons: 'monocons',
     emoticonsEnabled: false,
-    height: '100%',
-    width: '100%',
+    height: '350px',
+    width: '80%',
     plugins: 'undo',
-    toolbar: 'bold,italic,strike,underline|horizontalrule,link,unlink,image,email|left,center,right,justify|indent,outdent|color|table,bulletlist,orderedlist|quote,youtube|source,maximize',
+    toolbar: 'bold,italic,strike,underline|horizontalrule,link,unlink,image,email|left,center,right,justify|color|table,bulletlist,orderedlist|source,maximize',
+    toolbarExclude: 'table,bulletlist,orderedlist|indent,outdent|quote,youtube|source,maximize',
     style: 'https://cdn.jsdelivr.net/npm/sceditor@3/minified/themes/content/default.min.css'
 });
 </script>

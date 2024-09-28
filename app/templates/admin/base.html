@@ -1,28 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>{%block title%}ADMIN{% endblock %}</title>
-    {% block head %}{% endblock %}
-  </head>
+
+<head>
+  <meta charset="UTF-8">
+  <title>{%block title%}ADMIN{% endblock %}</title>
+  <link rel="stylesheet" href="/static/css/admin/admin.css">
+  {% block head %}{% endblock %}
+</head>
 
 <body>
+  <div class="menu--lateral">
+    <div class="menu--topo">
 
-{% block alert %}
-  {% if request.query_params.status == 'success' %}
-      <p style="color: green;">Conteúdos atualizados com sucesso!</p>
-  {% endif %}
-{% endblock %}
 
-<nav>
-{% block nav %}
-  <span>Clique em uma página para editar</span>
-  <hr>
-{% endblock %}
-</nav>
+    
+      <div class="logo--admin">
+        <img src="/static/img/logo.svg" alt="Logo park">
+      </div>
 
-{% block main%}{% endblock %}
+      <span class="block--alert">
+        {% block alert %}
+        {% if request.query_params.status == 'success' %}
+        <p style="color: rgb(8, 156, 8);">Conteúdos atualizados com sucesso!</p>
+        {% endif %}
+        {% endblock %}
+      </span>
 
-{% block bottom %}{% endblock %}
+      <nav class="admin--p">
+        {% block nav %}
+        {% endblock %}
+      </nav>
+
+      <section class="admin--list">{% block main%}{% endblock %}</section>
+
+      {% block bottom %}{% endblock %}
+    </div>
+
+    <form action="/logout" method="POST">
+      <button type="submit" class="btn-logout btn--secundario">Sair</button>
+    </form>
+  </div>
 </body>
+
 </html>

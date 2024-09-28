@@ -31,6 +31,11 @@
 margin-bottom: 4px;
 }
 
+.footer--grid--dir ul li a:hover {
+    color: #51a5a5;
+    transition: 120ms;
+}
+
 @media(max-width:800px) {
 
     .social--itens span {

@@ -18,3 +18,7 @@ margin-bottom: 20px;
 #regulamento p {
     margin-bottom: 1.25rem;
 }
+
+.texto p {
+    text-align: left;
+}
