@@ -18,6 +18,7 @@
 .designEdesenvolvimento a {
     font-size: 16px;
     margin-bottom: 2rem;
+    text-align: center;
 }
 
 .designEdesenvolvimento a:hover {
@@ -53,6 +54,11 @@ margin-bottom: 4px;
 
     .footer--grid--dir ul li a {
         font-size: 16px;
+    }
+
+    #logo-img img {
+        width: 100%;
+        justify-content: center;
     }
 }
 
