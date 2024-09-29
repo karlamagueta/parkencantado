@@ -46,7 +46,7 @@ p {
 }
 
 .banner--hero h1 + p {
-  z-index:99999;
+  z-index:9;
   position: relative;
 }
 
