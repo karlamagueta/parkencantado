@@ -21,7 +21,7 @@
 <section id="espaco" class="espaco container-1200">
     <div>
         <h1 class="titulo">nosso espaço</h1>
-        <p>Em nosso espaço temos diversão dos 5 aos 12 anos</p>
+        <p>Em nosso espaço temos diversão dos 2 aos 12 anos</p>
     </div>
     <div class="splash3">
         <img src="static/img/splash3.png" alt="">
@@ -31,7 +31,7 @@
             <ul>
                 <li> Escorregador</li>
                 <li> Piscina de bolinhas</li>
-                <li> Pula-pula</li>
+                <li> Trampolim</li>
                 <li> Arena Nerf (7+ anos)</li>
                 <li> Sala de desenhos</li>
                 <li> Campinho de Futebol</li>
@@ -49,9 +49,10 @@
 
             <div id="overlay" class="overlay">
                 <span id="close-btn" class="close-btn">&times;</span>
-                <button id="prev-btn" class="nav-btn"><</button>
-                <img id="imgAmpliada" src="" alt="Imagem Ampliada" class="foto-ampliada">
-                <button id="next-btn" class="nav-btn">></button>
+                <button id="prev-btn" class="nav-btn">
+                    << /button>
+                        <img id="imgAmpliada" src="" alt="Imagem Ampliada" class="foto-ampliada">
+                        <button id="next-btn" class="nav-btn">></button>
             </div>
         </div>
     </div>
@@ -129,9 +130,9 @@
         <div class="endereco--dir">
             <div class="endereco">
                 <h1>VEM VISITAR-NOS!</h1>
-<!--                 <p class="endereco--icon">R. Estrada da Igreja 2310, 4925-573 Perre<br>Viana do Castelo, Portugal</p> -->
+                <!--                 <p class="endereco--icon">R. Estrada da Igreja 2310, 4925-573 Perre<br>Viana do Castelo, Portugal</p> -->
                 <p class="endereco--icon">{{ content.endereco.content | safe }}</p>
-<!--                 <p class="horario--icon">Quarta a sexta-feira: 14h - 19h*<br>Sábado e Domingo: 10h - 19h*<br>Folga semanal: Segundas e Terças-feira*</p> -->
+                <!--                 <p class="horario--icon">Quarta a sexta-feira: 14h - 19h*<br>Sábado e Domingo: 10h - 19h*<br>Folga semanal: Segundas e Terças-feira*</p> -->
                 <p class="horario--icon"> {{ content.horario.content | safe }}</p>
                 <p>*Horário sujeito a alterações sem aviso prévio. <br> Consulte nosso Instagram para mais informações.</p>
             </div>
