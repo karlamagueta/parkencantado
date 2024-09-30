@@ -34,6 +34,9 @@ p {
 
 #foto--principal {
   width: 100%;
+  margin-left: 50px;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 #foto--principal img {
@@ -59,7 +62,7 @@ p {
 
 @media (max-width: 700px) {
   .fotobanner {
-    margin-top: -30px;
+    margin-top: -60px;
   }
 }
 
@@ -71,6 +74,10 @@ p {
 
   .banner--hero p {
     margin-top: -20px;
+    margin-bottom: 20px;
+  }
+
+  #foto--principal {
     margin-bottom: 20px;
   }
 }
