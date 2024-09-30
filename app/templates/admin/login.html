@@ -9,19 +9,28 @@
 <body id="body--dashboard">
     <div class="login-container">
         <h2>Login</h2>
-        <form action="/dashboard">
+
+        {% block alert %}
+            {% if error %}
+                <p style="color: red;">{{ error }}</p>
+            {% endif %}
+        {% endblock %}
+
+        {% block main %}
+        <form method="POST" action="/admin/login">
             <div class="form-group">
-                <label for="email">E-mail</label>
-                <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+                <label for="username">Usuário:</label><br>
+                <input type="text" id="username" name="username" placeholder="Digite seu usuário" required><br><br>
             </div>
             <div class="form-group">
-                <label for="password">Senha</label>
-                <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+                <label for="password">Senha:</label><br>
+                <input type="password" id="password" name="password" placeholder="Digite sua senha" required><br><br>
             </div>
             <div class="form-group">
                 <button type="submit" class="btn-login">Entrar</button>
             </div>
         </form>
+        {% endblock %}
     </div>
 </body>
 </html>

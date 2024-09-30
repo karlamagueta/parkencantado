@@ -6,6 +6,9 @@ to_address = "k.magueta@gmail.com"
 [database]
 path = "parkencantado.db"
 
+[session_database]
+session_path = "session.db"
+
 [email_options]
 hostname = "smtp.gmail.com"
 port = 587

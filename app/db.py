@@ -37,7 +37,53 @@ def initialize_database():
         )
 
     db.commit()
+
+
+    cursor.execute(
+        """\
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username VARCHAR UNIQUE NOT NULL,
+            password VARCHAR NOT NULL
+        );
+        """
+    )
+
+
+    cursor.execute("SELECT * FROM users")
+    if cursor.fetchone() is None:
+        cursor.execute(
+            """
+            INSERT INTO users (username, password)
+            VALUES (?, ?)
+            """,
+            ["admin", "Park@2024"]
+        )
+
+    db.commit()
+    db.close()
+
+
+def session_conn():
+    return connect(settings.session_database.session_path)
+
+
+def initialize_session_database():
+    db = session_conn()
+    cursor = db.cursor()
+
+    cursor.execute(
+        """\
+        CREATE TABLE IF NOT EXISTS session (
+            session_id VARCHAR UNIQUE NOT NULL,
+            username VARCHAR NOT NULL
+        );
+        """
+    )
+
+    db.commit()
     db.close()
 
 
 initialize_database()
+initialize_session_database()
