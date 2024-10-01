@@ -4,7 +4,7 @@ from email.message import EmailMessage
 import arel
 import jinja2
 from aiosmtplib import send
-from fastapi import Depends, FastAPI, Form, HTTPException, Request
+from fastapi import FastAPI, Form, HTTPException, Request
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -12,10 +12,11 @@ from pydantic import EmailStr
 from app.admin import (
     get_all_content,
     get_content,
+    get_user,
     update_content,
 )
-from app.db import initialize_database, session_conn
 from app.auth import AuthenticatedUser
+from app.session import set_session, delete_session
 
 from .config import settings
 from .utils import NoCacheStaticFiles
@@ -25,7 +26,6 @@ logging.basicConfig(level=logging.INFO)
 DEBUG = settings.get("DEBUG") is True
 
 app = FastAPI()
-initialize_database()
 
 if DEBUG:
     static_class = NoCacheStaticFiles
@@ -63,23 +63,16 @@ if DEBUG:
 
 @app.get("/admin/login")
 @app.post("/admin/login")
-async def admin_login(
-    request: Request,
-    username: str = Form(...),
-    password: str = Form(...)
-):
+async def admin_login(request: Request):
     context = {}
     if request.method == "POST":
-        db = session_conn()
-        cursor = db.cursor()
-        cursor.execute("""\
-            SELECT username, password FROM users WHERE username = ?""",
-            (username,)
-        )
-        user = cursor.fetchone()
-        db.close()
+        form = await request.form()
+        username = form.get("username")
+        password = form.get("password")
 
-        if user[0]["password"] == password:
+
+        user = get_user(username)
+        if user["password"] == password:
             session_id = set_session(username)
             response = RedirectResponse("/admin", status_code=302)
             response.set_cookie(key="session_id", value=session_id)
@@ -107,7 +100,7 @@ async def admin_logout(request: Request):
 
 
 @app.get("/admin", response_class=HTMLResponse)
-async def admin_index(request: Request, user: AuthenticatedUser):
+async def admin_index(request: Request, user: str = AuthenticatedUser):
     content = get_all_content()
     return templates.TemplateResponse(
         request=request, name="admin/index.html", context={"content": content}
@@ -116,7 +109,7 @@ async def admin_index(request: Request, user: AuthenticatedUser):
 
 @app.get("/admin/{identifier}", response_class=HTMLResponse)
 @app.post("/admin/{identifier}")
-async def admin_edit(request: Request, identifier: str, user: AuthenticatedUser):
+async def admin_edit(request: Request, identifier: str, user: str =  AuthenticatedUser):
 
     if request.method == "POST":
         form_data = await request.form()

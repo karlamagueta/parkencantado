@@ -21,12 +21,12 @@ def get_session(session_id):
     db = session_conn()
     cursor = db.cursor()
 
-    cursor.execute("SELECT * FROM session WHERE session_id = ?", (session_id,))
+    cursor.execute("SELECT username FROM session WHERE session_id = ?", (session_id,))
     row = cursor.fetchone()
     db.close()
 
-    if row:
-        return row[0]["username"]
+    if row: # ("foo",)
+        return row[0]
 
 
 def delete_session(session_id):
