@@ -52,3 +52,16 @@ def update_content(identifier: str, new_content: str):
     except Exception as e:
         print(f"Erro ao atualizar o conteúdo: {str(e)}")
         raise
+
+
+def get_user(username):
+    db = conn()
+    cursor = db.cursor()
+    cursor.execute("""\
+        SELECT username, password FROM users WHERE username = ?""",
+        (username,)
+    )
+    user = cursor.fetchone()
+    db.close()
+    if user:
+        return dict(zip(("username", "password"), user))
