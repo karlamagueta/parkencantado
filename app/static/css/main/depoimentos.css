@@ -1,0 +1,29 @@
+#reviews .titulo {
+    margin-top: 60px;
+    margin-bottom: 0px;
+    color: rgb(223, 119, 193);
+}
+#reviews .titulo + p {
+padding-bottom: 30px;
+}
+
+
+#reviews .none {
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    color: #525252;
+    font-size: 12px;
+}
+
+
+.elfsight-app-816a6e7c-0547-411f-8b7e-a1e6e2a4c188::after {
+    display: flex;
+content:'';
+background-color: rgb(255, 255, 255);
+width: 1200px;
+height: 60px;
+position: relative;
+top: -50px;
+z-index: 9;
+}

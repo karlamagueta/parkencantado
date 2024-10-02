@@ -1,7 +1,16 @@
 #regulamento {
-    margin-top: 60px;
+    margin-top: -50px;
+    padding-top: 60px;
     margin-bottom: 60px;
+    border-top: 1px solid #77D1D1;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    color: #525252;
+    font-family: Arial, Helvetica, sans-serif;
 }
+
+
 
 .regulamento--main {
     display: flex;
