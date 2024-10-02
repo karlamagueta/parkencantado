@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/css/style.css">
-    <title>Login | ADMIN</title>
-</head>
-<body id="body--dashboard">
-    <div class="login-container">
-        <h2>Login</h2>
+{% extends "admin/base.html"%}
 
         {% block alert %}
             {% if error %}
@@ -17,7 +7,7 @@
         {% endblock %}
 
         {% block main %}
-        <form method="POST" action="/admin/login">
+        <form method="POST" class="login--form" action="/admin/login">
             <div class="form-group">
                 <label for="username">Usuário:</label><br>
                 <input type="text" id="username" name="username" placeholder="Digite seu usuário" required><br><br>
@@ -31,6 +21,4 @@
             </div>
         </form>
         {% endblock %}
-    </div>
-</body>
-</html>
+
