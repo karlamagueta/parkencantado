@@ -100,8 +100,18 @@ const nextBtn = document.getElementById("next-btn");
 
 let currentIndex = 0;
 
+// Mapeia as imagens menores para suas respectivas versões maiores
+const imagensMaiores = [
+  '/static/img/IMG_0885.jpg', // imagem correspondente à espaco_1_small.png
+  '/static/img/IMG_0890.jpg', // imagem correspondente à espaco_2_small.png
+  '/static/img/IMG_0917.jpg', // imagem correspondente à espaco_3_small.png
+  '/static/img/IMG_0987.jpg', // imagem correspondente à espaco_4_small.png
+  '/static/img/IMG_0956.jpg', // imagem correspondente à espaco_5_small.png
+  '/static/img/IMG_0997.jpg'  // imagem correspondente à espaco_6_small.png
+];
+
 function updateImage() {
-  imgAmpliada.src = fotos[currentIndex].src;
+  imgAmpliada.src = imagensMaiores[currentIndex]; // Atualiza para a imagem maior
 }
 
 fotos.forEach((foto, index) => {
