@@ -9,7 +9,37 @@
         </div>
         <div class="img--bannerhero">
             <div id="foto--principal">
-                <img class="fotobanner" width="1200px" height="auto" src="static/img/splash 2 banner hero.webp" alt="Foto do Espaço instagramável com Urso de Peluche grande e um baloiço em um fundo florido">
+                <picture>
+                    <source srcset="
+                        static/img/banner_small.webp 600w,
+                        static/img/banner_medium.webp 900w,
+                        static/img/banner_large.webp 1200w
+                    " 
+                    sizes="
+                        (max-width: 600px) 90vw,
+                        (max-width: 900px) 80vw,
+                        (max-width: 1200px) 70vw,
+                        1200px
+                    " 
+                    type="image/webp">
+                    <source srcset="
+                        static/img/banner_small.webp 600w,
+                        static/img/banner_medium.webp 900w,
+                        static/img/banner_large.webp 1200w
+                    " 
+                    sizes="
+                        (max-width: 600px) 90vw,
+                        (max-width: 900px) 80vw,
+                        (max-width: 1200px) 70vw,
+                        1200px
+                    " 
+                    type="image/webp">
+                    <img class="fotobanner" 
+                         src="static/img/splash_2_banner_hero_large.jpg" 
+                         width="1200" 
+                         height="auto" 
+                         alt="Foto do Espaço instagramável com Urso de Peluche grande e um baloiço em um fundo florido">
+                </picture>
             </div>
         </div>
     </div>
