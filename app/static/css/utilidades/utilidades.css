@@ -38,6 +38,7 @@ a {
   font-family: "junge", Courier, monospace;
   font-size: 20px;
   cursor: pointer;
+  color: #2a2a2a;
 }
 
 .btn--secundario {
@@ -66,12 +67,14 @@ a {
   font-family: "Fredericka the Great", serif;
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 
 .roboto {
   font-family: "roboto", sans-serif;
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 
 
@@ -79,6 +82,7 @@ a {
   font-family: "Junge", cursive;
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 
 .autumn {

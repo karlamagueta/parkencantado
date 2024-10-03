@@ -81,7 +81,7 @@ padding-bottom: 30px;
 
 .read-more {
     justify-content: center;
-    color: #5198e5;
+    color: #2e70b6;
     cursor: pointer;
     display: flex;
     margin-top: 10px;
@@ -108,6 +108,8 @@ padding-bottom: 30px;
 .google--icon {
     display: flex;
     margin: 0 auto;
+    height: 17px;
+    width: 18px;
 }
 
 /* Modal */
