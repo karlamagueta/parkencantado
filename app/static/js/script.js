@@ -137,3 +137,70 @@ overlay.addEventListener("click", (event) => {
     overlay.classList.remove("active");
   }
 });
+
+
+// Cards de depoimentos
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const cardWrapper = document.querySelector('.card--carrossel');
+  const cards = document.querySelectorAll('.review-card');
+  const prevButton = document.querySelector('.carousel-prev');
+  const nextButton = document.querySelector('.carousel-next');
+  const cardWidth = cards[0].offsetWidth + 20; // Largura do card + margem
+  let currentIndex = 0;
+  const visibleCards = 4; // Quantidade de cards visíveis
+
+  // Função para atualizar a posição do carrossel
+  function updateCarouselPosition() {
+      cardWrapper.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+  }
+
+  // Avançar no carrossel
+  nextButton.addEventListener('click', function () {
+      currentIndex++;
+      if (currentIndex > cards.length - visibleCards) {
+          currentIndex = 0; // Volta para o início se ultrapassar
+      }
+      updateCarouselPosition();
+  });
+
+  // Voltar no carrossel
+  prevButton.addEventListener('click', function () {
+      currentIndex--;
+      if (currentIndex < 0) {
+          currentIndex = cards.length - visibleCards; // Vai para o final se ultrapassar
+      }
+      updateCarouselPosition();
+  });
+
+  // Modal para "Leia mais"
+  const readMoreButtons = document.querySelectorAll('.read-more');
+  const modalOverlay = document.getElementById('modal-overlay');
+  const modalText = document.getElementById('modal-text');
+  const modalReviewer = document.getElementById('modal-reviewer');
+  const closeModal = document.getElementById('close-modal');
+
+  readMoreButtons.forEach((button) => {
+      button.addEventListener('click', function () {
+          const card = this.parentElement;
+          const fullText = card.querySelector('.full-text').innerText;
+          const reviewerName = card.querySelector('.reviewer-name').innerText;
+
+          modalText.innerText = fullText;
+          modalReviewer.innerText = reviewerName;
+
+          modalOverlay.classList.add('active');
+      });
+  });
+
+  closeModal.addEventListener('click', function () {
+      modalOverlay.classList.remove('active');
+  });
+
+  modalOverlay.addEventListener('click', function (e) {
+      if (e.target === modalOverlay) {
+          modalOverlay.classList.remove('active');
+      }
+  });
+});
