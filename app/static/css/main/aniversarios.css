@@ -121,6 +121,12 @@
   box-shadow: 0 4px 4px 0 #c8c8c8;
 }
 
+/* hidden by default */
+.btn--form .sucesso-span {
+  display: none;
+  color: green;
+}
+
 @media (max-width:855px) {
   .grid--aniversarios {
     grid-template-columns: 1fr;

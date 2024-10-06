@@ -1,5 +1,6 @@
 import logging
 from email.message import EmailMessage
+from datetime import datetime
 
 import arel
 import jinja2
@@ -11,9 +12,11 @@ from fastapi.templating import Jinja2Templates
 from pydantic import EmailStr
 from app.admin import (
     get_all_content,
+    get_all_emails,
     get_content,
     get_user,
     update_content,
+    save_email,
 )
 from app.auth import AuthenticatedUser
 from app.session import set_session, delete_session
@@ -107,6 +110,20 @@ async def admin_index(request: Request, user: str = AuthenticatedUser):
     )
 
 
+@app.get("/admin/contact")
+async def admin_contact(request: Request, user: str = AuthenticatedUser):
+    emails = []
+    for email in get_all_emails():
+        email["created"] = f"{datetime.fromisoformat(email['created']):%d/%m/%Y %H:%M}"
+        if email["date"]:
+            email["date"] = f"{datetime.fromisoformat(email['date']):%d/%m/%Y}"
+        emails.append(email)
+
+    return templates.TemplateResponse(
+        request=request, name="admin/contact.html", context={"emails": emails}
+    )
+
+
 @app.get("/admin/{identifier}", response_class=HTMLResponse)
 @app.post("/admin/{identifier}")
 async def admin_edit(request: Request, identifier: str, user: str =  AuthenticatedUser):
@@ -142,12 +159,19 @@ async def index(request: Request, identifier: str = "index"):
 
 @app.post("/enviar-email/")
 async def enviar_email(
+    request: Request,
     nome: str = Form(...),
     email: EmailStr = Form(...),
     telemovel: str = Form(...),
-    data: str = Form(...),
     mensagem: str = Form(...),
 ):
+
+    form_data = await request.form()
+    data = form_data.get("data")
+
+    # Persist on database
+    save_email(nome, email, telemovel, data, mensagem)
+
     corpo_email = (
         jinja_env.get_template("email/contato.html")
         .render(
@@ -161,14 +185,15 @@ async def enviar_email(
         .encode("utf-8")
     )
 
-    logging.info(
-        f"Dados recebidos: {nome}, {email}, {telemovel}, {data}, {mensagem}"
-    )
+    logging.info(f"Dados recebidos: {form_data}")
 
     message = EmailMessage()
     message["From"] = settings.from_address
     message["To"] = settings.to_address
     message["Subject"] = f"Novo contato - {nome} - {settings.site_name}"
+    cc_address = settings.get("cc_address")
+    if cc_address:
+        message['Cc'] = cc_address
     message.add_header("Content-Type", "text/html")
     message.set_payload(corpo_email)
 
@@ -183,6 +208,9 @@ async def enviar_email(
         confirmation_message = EmailMessage()
         confirmation_message["From"] = settings.from_address
         confirmation_message["To"] = email
+        reply_to = settings.get("reply_to_address")
+        if reply_to:
+            confirmation_message['Reply-To'] = reply_to
         confirmation_message["Subject"] = (
             f"Recebemos a sua mensagem - {settings.site_name}"
         )
@@ -193,64 +221,6 @@ async def enviar_email(
                 preview_text=f"Ola {nome} recebemos a sua mensagem.",
                 nome=nome,
                 data=data,
-            )
-            .encode("utf-8")
-        )
-        await send(confirmation_message, **settings.email_options)
-        logging.info("Confirmacao enviada com sucesso!")
-
-    return {"message": "E-mail enviado com sucesso!"}
-
-@app.post("/enviar-email-contacto/")
-async def enviar_email_contacto(
-    nome_contacto: str = Form(...),
-    email_contacto: EmailStr = Form(...),
-    telemovel_contacto: str = Form(...),
-    mensagem_contacto: str = Form(...),
-):
-    corpo_email = (
-        jinja_env.get_template("email/contato.html")
-        .render(
-            preview_text=f"Novo email de {nome_contacto}",
-            nome_contacto=nome_contacto,
-            email_contacto=email_contacto,
-            telemovel_contacto=telemovel_contacto,
-            mensagem_contacto=mensagem_contacto,
-        )
-        .encode("utf-8")
-    )
-
-    logging.info(
-        f"Dados recebidos: {nome_contacto}, {email_contacto}, {telemovel_contacto}, {mensagem_contacto}"
-    )
-
-    message = EmailMessage()
-    message["From"] = settings.from_address
-    message["To"] = settings.to_address
-    message["Subject"] = f"Novo contato - {nome_contacto} - {settings.site_name}"
-    message.add_header("Content-Type", "text/html")
-    message.set_payload(corpo_email)
-
-    try:
-        await send(message, **settings.email_options)
-        logging.info("E-mail recebido com sucesso!")
-    except Exception as e:
-        logging.error(f"Erro ao enviar e-mail: {e}")
-        raise HTTPException(status_code=500, detail="Erro ao enviar o e-mail.")
-    else:
-        # Confirmation to the sender
-        confirmation_message = EmailMessage()
-        confirmation_message["From"] = settings.from_address
-        confirmation_message["To"] = email_contacto
-        confirmation_message["Subject"] = (
-            f"Recebemos a sua mensagem - {settings.site_name}"
-        )
-        confirmation_message.add_header("Content-Type", "text/html")
-        confirmation_message.set_payload(
-            jinja_env.get_template("email/confirmation.html")
-            .render(
-                preview_text=f"Ola {nome_contacto} recebemos a sua mensagem.",
-                nome=nome_contacto,
             )
             .encode("utf-8")
         )

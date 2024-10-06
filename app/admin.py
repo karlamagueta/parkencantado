@@ -1,5 +1,5 @@
 from app.db import conn
-
+from datetime import datetime
 
 def get_content(title: str):
     db = conn()
@@ -65,3 +65,36 @@ def get_user(username):
     db.close()
     if user:
         return dict(zip(("username", "password"), user))
+
+
+def get_all_emails():
+    db = conn()
+    cursor = db.cursor()
+
+    cursor.execute("SELECT * FROM contact ORDER by created DESC")
+    all_results = cursor.fetchall()
+    headers = "id name email phone date message created".split()
+    db.close()
+
+    return [
+       dict(zip(headers, row))
+       for row in all_results
+    ]
+
+
+def save_email(name: str, email: str, phone: str, date: str, message: str):
+    db = conn()
+    cursor = db.cursor()
+    current_time = datetime.now()
+    if date:
+        date = datetime.strptime(date, "%Y-%m-%d")
+
+    cursor.execute(
+       """
+       INSERT INTO contact (name, email, phone, date, message, created)
+       VALUES (?, ?, ?, ?, ?, ?)
+       """,
+       [name, email, phone, date, message, current_time]
+    )
+    db.commit()
+    db.close()

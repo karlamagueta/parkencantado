@@ -7,6 +7,8 @@
 
 {% block main %}
   <ul>
+    <li><a href="{{url_for('admin_contact')}}">Mensagens recebidas</a></li>
+    <li> Páginas de Conteúdo: </li>
     {% for identifier, item in content.items() %}
         <li><a href="{{url_for('admin_edit', identifier=identifier)}}">{{item.title}}</a></li>
     {% else %}

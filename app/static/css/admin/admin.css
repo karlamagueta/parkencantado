@@ -139,3 +139,88 @@ hr{
   font-size: 20px;
   cursor: pointer;
 }
+
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.admin-table th, .admin-table td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.admin-table th {
+  background-color: #007bff; /* Bootstrap primary color */
+  color: white;
+}
+
+.admin-table tbody tr {
+  background-color: white;
+  border-bottom: 1px solid #ddd;
+}
+
+.admin-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9; /* Light grey for even rows */
+}
+
+.admin-table tbody tr:hover {
+  background-color: #f1f1f1; /* Light grey on hover */
+}
+
+.admin-table button {
+  padding: 8px 12px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff; /* Button color */
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.admin-table button:hover {
+  background-color: #0056b3; /* Darker button color on hover */
+}
+
+@media (max-width: 768px) {
+  .admin-table, .admin-table thead, .admin-table tbody, .admin-table th, .admin-table td, .admin-table tr {
+    display: block; /* Stack all elements */
+  }
+
+  .admin-table thead tr {
+    position: absolute; /* Hide the header on small screens */
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .admin-table tr {
+    margin-bottom: 15px;
+    border: 1px solid #ddd; /* Add border for mobile view */
+  }
+
+  .admin-table td {
+    text-align: right;
+    position: relative;
+    padding-left: 50%; /* Add padding for label alignment */
+  }
+
+  .admin-table td:before {
+    position: absolute;
+    left: 15px;
+    width: 45%; /* Width of the label */
+    white-space: nowrap; /* Prevent text wrapping */
+    text-align: left;
+    font-weight: bold;
+  }
+
+  .admin-table td:nth-of-type(1):before { content: "Envio"; }
+  .admin-table td:nth-of-type(2):before { content: "Nome"; }
+  .admin-table td:nth-of-type(3):before { content: "Email"; }
+  .admin-table td:nth-of-type(4):before { content: "Telemóvel"; }
+  .admin-table td:nth-of-type(5):before { content: "Mensagem"; }
+  .admin-table td:nth-of-type(6):before { content: "Data Festa"; }
+}
