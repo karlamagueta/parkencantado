@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 document.addEventListener("DOMContentLoaded", function () {
   const hamburgerMenu = document.getElementById("hamburger-menu");
   const headerMenu = document.querySelector(".header-menu");
@@ -7,14 +14,13 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// whatsapp notificação
-const whatsappIcon = document.querySelector('.whatsapp-fixo');
 
-whatsappIcon.addEventListener('click', () => {
-  whatsappIcon.classList.add('clicked');
-});
+
+
+
 
 //form
+
 
 async function enviarFormulario(suffix = "") {
   console.log("Iniciando envio do formulário");

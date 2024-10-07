@@ -105,7 +105,7 @@
             <p class="designEdesenvolvimento"><a href="https://wa.me/351961572198" target="_blank">Desenvolvido por Karla Mag e Victor Magueta </a></p>
 
         </div>
-        <a href="https://wa.me/351915508864" target="_blank" class="whatsapp-fixo">
+        <a href="https://wa.me/351915508864" target="_blank" class="whatsapp-fixo" id="whatsapp-icon">
             <img src="static/img/whats.png" alt="WhatsApp">
         </a>
     </footer>
@@ -115,6 +115,21 @@
     {% if DEBUG %} {{ hot_reload.script(url_for('hot-reload')) | safe }} {% endif
     %}
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+  const inputs = document.querySelectorAll('input, textarea');
+  const whatsappIcon = document.getElementById('whatsapp-icon');
+
+  inputs.forEach(input => {
+      input.addEventListener('focus', () => {
+          whatsappIcon.style.display = 'none';
+      });
+      input.addEventListener('blur', () => {
+          whatsappIcon.style.display = 'block'; // Mostrar novamente ao sair do campo
+      });
+  });
+});
+    </script>
 </body>
 
 </html>

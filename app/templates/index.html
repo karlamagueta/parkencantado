@@ -195,33 +195,32 @@
                 <p>Mande-nos sua mensagem,<br>
                     e responderemos o mais breve possível!</p>
             </div>
-<form>
-            <div class="contacto--dir emailform_contacto">
-                <div>
-                    <label for="nome">Nome<br></label>
-                    <input class="form--nome" type="text" id="nome_contacto" name="nome_contacto" placeholder="Nome Completo" required>
-                </div>
-                <div>
-                    <label for="email">E-mail<br></label>
-                    <input class="form--email" type="email" id="email_contacto" name="email_contacto" placeholder="E-mail" required>
-                </div>
-                <div>
+            <form>
+                <div class="contacto--dir emailform_contacto">
                     <div>
-                        <label for="telemovel">Telemóvel<br></label>
-                        <input type="tel" id="telemovel_contacto" name="telemovel_contacto" placeholder="xxx xxx xxx">
+                        <label for="nome">Nome<br></label>
+                        <input class="form--nome" type="text" id="nome_contacto" name="nome_contacto" placeholder="Nome Completo" required>
+                    </div>
+                    <div>
+                        <label for="email">E-mail<br></label>
+                        <input class="form--email" type="email" id="email_contacto" name="email_contacto" placeholder="E-mail" required>
+                    </div>
+                    <div>
+                        <div>
+                            <label for="telemovel">Telemóvel<br></label>
+                            <input type="tel" id="telemovel_contacto" name="telemovel_contacto" placeholder="xxx xxx xxx">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="mensagem">Mensagem</label>
+                        <textarea id="mensagem_contacto" name="mensagem_contacto" rows="5" placeholder="Digite aqui sua mensagem"></textarea>
+                    </div>
+                    <div class="btn--form">
+                        <span id="sucesso_contacto" class="sucesso--span"></span>
+                        <button class="btn" type="button" aria-label="Botão para enviar mensagen" onclick="enviarFormulario('_contacto')">Enviar</button>
                     </div>
                 </div>
-                <div>
-                    <label for="mensagem">Mensagem</label>
-                    <textarea id="mensagem_contacto" name="mensagem_contacto" rows="5" placeholder="Digite aqui sua mensagem"></textarea>
-                </div>
-                <div class="btn--form">
-                    <span id="sucesso_contacto" class="sucesso--span"></span>
-                    <button class="btn" type="button" aria-label="Botão para enviar mensagen" onclick="enviarFormulario('_contacto')">Enviar</button>
-                </div>
-
-            </div>
-</form>
+            </form>
         </div>
         <img src="../static/img/splash5.png" alt="Imagem de fundo de spash em aquarela" class="contacto--splash">
     </div>
