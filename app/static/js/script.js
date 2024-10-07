@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 document.addEventListener("DOMContentLoaded", function () {
   const hamburgerMenu = document.getElementById("hamburger-menu");
   const headerMenu = document.querySelector(".header-menu");
@@ -13,11 +6,6 @@ document.addEventListener("DOMContentLoaded", function () {
     headerMenu.classList.toggle("show");
   });
 });
-
-
-
-
-
 
 //form
 
