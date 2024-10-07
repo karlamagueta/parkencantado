@@ -7,22 +7,31 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-async function enviarFormulario() {
+async function enviarFormulario(suffix = "") {
   console.log("Iniciando envio do formulário");
+  const nome = document.getElementById(`nome${suffix}`).value;
+  const email = document.getElementById(`email${suffix}`).value;
+  const telemovel = document.getElementById(`telemovel${suffix}`).value;
+  const mensagem = document.getElementById(`mensagem${suffix}`).value;
+
+  if (!nome || !email || !telemovel || !mensagem) {
+    alert("Todos os campos são obrigatórios!");
+    throw new Error("Required fields are missing");
+  }
 
   const formData = new FormData();
-  formData.append("nome", document.getElementById("nome").value);
-  formData.append("email", document.getElementById("email").value);
-  formData.append("telemovel", document.getElementById("telemovel").value);
-  formData.append("data", document.getElementById("data").value);
-  formData.append("mensagem", document.getElementById("mensagem").value);
+  formData.append("nome", nome);
+  formData.append("email", email);
+  formData.append("telemovel", telemovel);
+  formData.append("mensagem", mensagem);
 
-  console.log("Dados do formulário:", {
-    nome: document.getElementById("nome").value,
-    email: document.getElementById("email").value,
-    telemovel: document.getElementById("telemovel").value,
-    data: document.getElementById("data").value,
-    mensagem: document.getElementById("mensagem").value,
+  const data = document.getElementById(`data${suffix}`);
+  if (data) {
+    formData.append("data", data.value);
+  }
+
+  formData.forEach((value, key) => {
+    console.log(`${key}: ${value}`);
   });
 
   try {
@@ -39,50 +48,17 @@ async function enviarFormulario() {
 
     const result = await response.json();
     console.log("Resultado da API:", result);
-    alert(result.message);
-  } catch (error) {
-    console.error("Erro ao enviar o formulário:", error);
-    alert(`Erro ao enviar o formulário: ${error.message}`);
-  }
-}
 
-async function enviarFormularioContacto() {
-  // console.log("Iniciando envio do formulário de contato");
-  // console.log("Nome:", document.getElementById("nome_contacto"));
-  // console.log("Email:", document.getElementById("email_contacto"));
-  // console.log("Telemóvel:", document.getElementById("telemovel_contacto"));
-  // console.log("Mensagem:", document.getElementById("mensagem_contacto"));
-
-  const formData = new FormData();
-  formData.append(
-    "nome_contacto",
-    document.getElementById("nome_contacto").value
-  );
-  formData.append(
-    "email_contacto",
-    document.getElementById("email_contacto").value
-  );
-  formData.append(
-    "telemovel_contacto",
-    document.getElementById("telemovel_contacto").value
-  );
-  formData.append(
-    "mensagem_contacto",
-    document.getElementById("mensagem_contacto").value
-  );
-
-  try {
-    const response = await fetch("/enviar-email-contacto/", {
-      method: "POST",
-      body: formData,
+    // clean all inputs on success
+    const inputs = document.querySelectorAll(`.emailform${suffix} input, .emailform${suffix} textarea`);
+    inputs.forEach(input => {
+      input.value = '';
     });
 
-    if (!response.ok) {
-      throw new Error(`Erro HTTP! status: ${response.status}`);
-    }
+    const sucesso = document.getElementById(`sucesso${suffix}`);
+    sucesso.style.display = "inline";
+    sucesso.innerText = result.message;
 
-    const result = await response.json();
-    alert(result.message);
   } catch (error) {
     console.error("Erro ao enviar o formulário:", error);
     alert(`Erro ao enviar o formulário: ${error.message}`);

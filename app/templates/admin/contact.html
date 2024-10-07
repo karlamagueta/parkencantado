@@ -1,0 +1,39 @@
+{% extends "admin/base.html"%}
+
+{% block nav %}
+<span>Emails de contato recebidos</span>
+<hr>
+{% endblock %}
+
+{% block main %}
+
+  <a href="/admin"> Voltar </a>
+  <h1>Mensagens recebidas</h1>
+  <table class="admin-table">
+        <thead>
+           <tr>
+              <td>Envio</td>
+              <td>Nome</td>
+              <td>E-mail</td>
+              <td>Telemóvel</td>
+              <td>Mensagem</td>
+              <td>Data da Festa</td>
+           </tr>
+        </thead>
+    <tbody>
+    {% for email in emails %}
+        <tr>
+           <td>{{ email.created }}</td>
+           <td>{{ email.name }}</td>
+           <td>{{ email.email }}</td>
+           <td>{{ email.phone }}</td>
+           <td>{{ email.message }}</td>
+           <td>{{ email.date }}</td>
+        <tr>
+    {% else %}
+        <tr>Nenhum email encontrado no banco de dados.</tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
+

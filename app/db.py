@@ -61,6 +61,21 @@ def initialize_database():
         )
 
     db.commit()
+
+    cursor.execute(
+        """\
+        CREATE TABLE IF NOT EXISTS contact (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name VARCHAR NOT NULL,
+            email VARCHAR NOT NULL,
+            phone VARCHAR NOT NULL,
+            date DATETIME,
+            message VARCHAR NOT NULL,
+            created DATETIME DEFAULT CURRENT_TIMESTAMP
+        );
+        """
+    )
+
     db.close()
 
 

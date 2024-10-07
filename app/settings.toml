@@ -2,6 +2,8 @@ debug = true
 site_name = "Park Encantado"
 from_address = "testemailspython@gmail.com"
 to_address = "k.magueta@gmail.com"
+reply_to_address = "parkencantado2024@gmail.com"
+cc_address = "parkencantado2024@gmail.com"
 
 [database]
 path = "parkencantado.db"
