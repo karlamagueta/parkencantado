@@ -16,9 +16,9 @@ O Park Encantado é um projeto web que visa oferecer uma plataforma interativa e
 
 ## Funcionalidades
 
-- **Informações das Atrações:** Detalhes sobre cada atração, incluindo descrição, horários e restrições de idade.
-- **Eventos Especiais:** Calendário com detalhes de quando o park está aberto e quando pode-se agendar festas de aniverário.
-- **Contato:** Formulário de contato para dúvidas e feedback dos visitantes.
+- **Informações das Atrações:** Detalhes sobre atrações, incluindo descrição, horários e restrições de idade.
+- **Contato:** Formulário de contato para dúvidas, reservas
+- **Depoimentos:** Opiniões de quem ja foi
 
 ## Tecnologias Utilizadas
 
@@ -33,7 +33,6 @@ O Park Encantado é um projeto web que visa oferecer uma plataforma interativa e
 
 - **Outras Tecnologias:**
   - Google Fonts
-  - Styled Calendar
 
 ## Estrutura do Projeto
 
