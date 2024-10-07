@@ -151,16 +151,52 @@ a {
   right: 40px;
   z-index: 1000;
   justify-content: center;
+  width: 60px;
+  height: 60px;
+
 }
 
 .whatsapp-fixo img {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
+  width: 56px;
+  height: 56px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
-  border-radius: 100%;
+  padding: 8px 8px;
+  border-radius: 100% 100% 100% 8px;
 }
+
+.whatsapp-fixo::after {
+  content: "1";
+  position: absolute;
+  top: 2px;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+.whatsapp-fixo.clicked::after {
+  display: none;
+}
+
 
 @media (max-width: 1300px) {
   .container-1200 {

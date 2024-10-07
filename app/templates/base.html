@@ -106,16 +106,10 @@
 
         </div>
         <a href="https://wa.me/351915508864" target="_blank" class="whatsapp-fixo">
-            <img src="static/img/whatsapp--icon.png" alt="WhatsApp">
+            <img src="static/img/whats.png" alt="WhatsApp">
         </a>
     </footer>
     {% endblock %}
-
-
-    {% block bottom %}
-    <script src="static/js/script.js"></script>
-    <script async type="module" src="https://embed.styledcalendar.com/assets/parent-window.js"></script>
-    {% endblock%}
 
     <!-- Hot reload script -->
     {% if DEBUG %} {{ hot_reload.script(url_for('hot-reload')) | safe }} {% endif

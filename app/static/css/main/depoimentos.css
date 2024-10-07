@@ -104,6 +104,10 @@ padding-bottom: 30px;
     font-size: 15px;
     font-weight: 600;
 }
+.reviewer-name img {
+    height: 16px;
+    width: 16px;
+}
 
 .google--icon {
     display: flex;
@@ -112,7 +116,7 @@ padding-bottom: 30px;
     width: 18px;
 }
 
-/* Modal */
+
 .modal-overlay {
     display: none;
     position: fixed; 

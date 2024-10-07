@@ -7,6 +7,15 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+// whatsapp notificação
+const whatsappIcon = document.querySelector('.whatsapp-fixo');
+
+whatsappIcon.addEventListener('click', () => {
+  whatsappIcon.classList.add('clicked');
+});
+
+//form
+
 async function enviarFormulario(suffix = "") {
   console.log("Iniciando envio do formulário");
   const nome = document.getElementById(`nome${suffix}`).value;
