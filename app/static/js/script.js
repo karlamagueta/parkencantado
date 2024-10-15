@@ -7,35 +7,61 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-//form
+ // Whatsapp Icon 
+ const whatsappIcon = document.querySelector('.whatsapp-fixo');
+const inputs = document.querySelectorAll('input, textarea'); // Seleciona inputs e textareas
 
+// Adicionar classe 'with-notification' para exibir a notificação
+whatsappIcon.classList.add('with-notification');
+
+// Esconde o ícone quando o usuário clica em qualquer input ou textarea
+inputs.forEach(input => {
+  input.addEventListener('focus', () => {
+    whatsappIcon.classList.add('hidden'); // Esconde o ícone
+  });
+
+  input.addEventListener('blur', () => {
+    whatsappIcon.classList.remove('hidden'); // Mostra o ícone novamente
+  });
+});
+
+// Adiciona evento de clique no ícone do WhatsApp
+whatsappIcon.addEventListener('click', () => {
+  whatsappIcon.classList.remove('with-notification'); // Remove a notificação
+  whatsappIcon.classList.add('clicked'); // Adiciona a classe 'clicked' para remover o ::after permanentemente
+});
+
+//form
 
 async function enviarFormulario(suffix = "") {
   console.log("Iniciando envio do formulário");
+
+  // Seleção dos elementos
   const nome = document.getElementById(`nome${suffix}`).value;
   const email = document.getElementById(`email${suffix}`).value;
   const telemovel = document.getElementById(`telemovel${suffix}`).value;
   const mensagem = document.getElementById(`mensagem${suffix}`).value;
+  const submitBtn = document.querySelector(`.btn`); // Seleciona o botão de envio
+  const processando = document.getElementById(`processando${suffix}`); // Indicador de "Enviando..."
+  const sucesso = document.getElementById(`sucesso${suffix}`); // Mensagem de sucesso
 
+  // Verificação de campos obrigatórios
   if (!nome || !email || !telemovel || !mensagem) {
     alert("Todos os campos são obrigatórios!");
     throw new Error("Required fields are missing");
   }
 
+  // Desativar o botão "Enviar" e mostrar "Enviando..."
+  submitBtn.disabled = true;
+  processando.style.display = 'inline';
+  sucesso.style.display = 'none'; // Esconde mensagem de sucesso anterior
+
+  // FormData para envio
   const formData = new FormData();
   formData.append("nome", nome);
   formData.append("email", email);
   formData.append("telemovel", telemovel);
   formData.append("mensagem", mensagem);
-
-  const data = document.getElementById(`data${suffix}`);
-  if (data) {
-    formData.append("data", data.value);
-  }
-
-  formData.forEach((value, key) => {
-    console.log(`${key}: ${value}`);
-  });
 
   try {
     const response = await fetch("/enviar-email/", {
@@ -52,19 +78,23 @@ async function enviarFormulario(suffix = "") {
     const result = await response.json();
     console.log("Resultado da API:", result);
 
-    // clean all inputs on success
+    // Limpar todos os campos após o envio com sucesso
     const inputs = document.querySelectorAll(`.emailform${suffix} input, .emailform${suffix} textarea`);
     inputs.forEach(input => {
       input.value = '';
     });
 
-    const sucesso = document.getElementById(`sucesso${suffix}`);
-    sucesso.style.display = "inline";
-    sucesso.innerText = result.message;
+    // Exibir a mensagem de sucesso
+    sucesso.innerText = result.message || 'Mensagem enviada com sucesso!';
+    sucesso.style.display = 'inline';
 
   } catch (error) {
     console.error("Erro ao enviar o formulário:", error);
     alert(`Erro ao enviar o formulário: ${error.message}`);
+  } finally {
+    // Reativar o botão "Enviar" e esconder "Enviando..." após o processo
+    submitBtn.disabled = false;
+    processando.style.display = 'none';
   }
 }
 

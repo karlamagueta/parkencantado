@@ -122,10 +122,39 @@
 }
 
 /* hidden by default */
-.btn--form .sucesso-span {
+#sucesso {
   display: none;
   color: green;
+  background-color: rgb(205, 251, 216);
+  font-weight: bold;
+  padding: 12px 24px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin: 0 20px;
+  border-radius: 10px;
+  height: auto;
+  font-size: 20px;
+  justify-content: center;
+  align-items: center;
 }
+
+.processando--span {
+  color: #ff9100;
+  font-weight: bold;
+  padding: 12px 24px;
+  background-color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin: 0 20px;
+  font-size: 20px;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn--form span {
+  justify-content: center;
+  align-items: center;
+}
+
 
 @media (max-width:855px) {
   .grid--aniversarios {

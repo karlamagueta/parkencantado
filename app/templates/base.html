@@ -3,14 +3,14 @@
 
 <head>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PZHRZWGQCF"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PZHRZWGQCF"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-  gtag('config', 'G-PZHRZWGQCF');
-</script>
+        gtag('config', 'G-PZHRZWGQCF');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Conheça o Park Encantado, parque infantil para crianças de 2 a 12 anos com piscina de bolinhas, trampolim, escorregadores e muito mais. O local perfeito para diversão em Viana do Castelo!">
@@ -19,8 +19,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="apple-touch-icon" sizes="180x180" href="static/img/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="static/img/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="static/img/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="static/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="static/img/favicon-16x16.png">
     <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Beth+Ellen&family=Junge&display=swap');
@@ -32,21 +32,21 @@
     <header>
         <div class="header-bg">
             <div class="header">
-            {% block header %}
-            <a href="./" id="logo-img"><img src="static/img/logo.svg" alt="Park Encantado"></a>
-            <nav aria-label="primaria">
-                <ul class="header-menu">
-                    <li><a href="{{url_for('index')}}#espaco">O espaço</a></li>
-                    <li><a href="{{url_for('index')}}#aniversarios">Aniversários</a></li>
-                    <li><a href="{{url_for('index')}}#endereco">Localização</a></li>
-                    <li><a href="{{url_for('index')}}#contacto">Contacto</a></li>
-                </ul>
-                <a href="{{url_for('index')}}#aniversarios" aria-label="Botão de envio para solicitação de Informações sobre Aniversários" class="btn">Reserve</a>
-                <div class="hamburger" id="hamburger-menu">
-                    &#9776;
-                </div>
-            </nav>
-            {% endblock %}
+                {% block header %}
+                <a href="./" id="logo-img"><img src="static/img/logo.svg" alt="Park Encantado"></a>
+                <nav aria-label="primaria">
+                    <ul class="header-menu">
+                        <li><a href="{{url_for('index')}}#espaco">O espaço</a></li>
+                        <li><a href="{{url_for('index')}}#aniversarios">Aniversários</a></li>
+                        <li><a href="{{url_for('index')}}#endereco">Localização</a></li>
+                        <li><a href="{{url_for('index')}}#contacto">Contacto</a></li>
+                    </ul>
+                    <a href="{{url_for('index')}}#aniversarios" aria-label="Botão de envio para solicitação de Informações sobre Aniversários" class="btn">Reserve</a>
+                    <div class="hamburger" id="hamburger-menu">
+                        &#9776;
+                    </div>
+                </nav>
+                {% endblock %}
             </div>
         </div>
     </header>
@@ -55,7 +55,7 @@
     {% block main %}{% endblock %}
 
     {% block contacto %}
-    
+
     {% endblock %}
 
     <!--<section id="regulamento" class="container-1200">
@@ -121,19 +121,24 @@
     %}
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-  const inputs = document.querySelectorAll('input, textarea');
-  const whatsappIcon = document.getElementById('whatsapp-icon');
+        const whatsappIcon = document.querySelector('.whatsapp-fixo');
+        const inputs = document.querySelectorAll('input');
 
-  inputs.forEach(input => {
-      input.addEventListener('focus', () => {
-          whatsappIcon.style.display = 'none';
-      });
-      input.addEventListener('blur', () => {
-          whatsappIcon.style.display = 'block';
-      });
-  });
-});
+        // Adiciona evento de foco nos inputs
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                whatsappIcon.classList.add('hidden'); // Esconde o ícone
+            });
+
+            input.addEventListener('blur', () => {
+                whatsappIcon.classList.remove('hidden'); // Mostra o ícone novamente
+            });
+        });
+
+        // Adiciona evento de clique no ícone do WhatsApp
+        whatsappIcon.addEventListener('click', () => {
+            whatsappIcon.classList.toggle('clicked'); // Alterna a classe 'clicked'
+        });
     </script>
 </body>
 

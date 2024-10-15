@@ -117,10 +117,11 @@
                 <label for="mensagem">Mensagem</label>
                 <textarea id="mensagem" name="mensagem" rows="5" placeholder="Digite aqui sua mensagem"></textarea>
             </div>
-            <div class="btn--form">
-                <span id="sucesso" class="sucesso--span"></span>
-                <button class="btn" aria-label="botão para envio de formulário de mensagem" type="button" onclick="enviarFormulario()">Enviar</button>
-            </div>
+<div class="btn--form">
+    <span id="sucesso" class="sucesso--span"></span>
+    <span id="processando" class="processando--span" style="display: none;">Enviando...</span>
+    <button id="submit-btn" class="btn" aria-label="botão para envio de formulário de mensagem" type="button" onclick="enviarFormulario()">Enviar</button>
+</div>
         </div>
         <div class="img--aniversario">
             <img src="../static/img/bolo.webp" alt="imagem de bolo de aniversário em uma mesa enfeitada">
@@ -129,6 +130,7 @@
 </section>
 
 <!-- <section id="calendario" class="container-1200">
+
     <div class="grid--calendario">
         <div class="calend--esq">
             <div>
@@ -151,6 +153,8 @@
         </div>
     </div>
 </section> -->
+
+
 <section id="endereco" class="container-1200">
     <div>
         <h1 class="titulo">endereço</h1>
@@ -217,6 +221,7 @@
                     </div>
                     <div class="btn--form">
                         <span id="sucesso_contacto" class="sucesso--span"></span>
+                        <span id="processando_contacto" class="processando--span" style="display: none;">Enviando...</span>
                         <button class="btn" type="button" aria-label="Botão para enviar mensagen" onclick="enviarFormulario('_contacto')">Enviar</button>
                     </div>
                 </div>
@@ -224,7 +229,6 @@
         </div>
         <img src="../static/img/splash5.png" alt="Imagem de fundo de spash em aquarela" class="contacto--splash">
     </div>
-
 </section>
 
 <section id="reviews" class="container-1200">
