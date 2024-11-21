@@ -6,8 +6,7 @@
   margin-bottom: -120px;
 }
 
-.banner--hero h1,
-p {
+.banner--hero h1, .banner--hero p {
   display: flex;
   justify-content: center;
   z-index: 1000;
